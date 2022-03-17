@@ -1,0 +1,250 @@
+faction,name,attack,combatType,ability,cardType
+Monsters,Crone Weavess,6,Melee,Muster,Basic
+Monsters,Eredin Bringer of Death,0,Leader,Discard 2 draw 1,Leaders
+Monsters,Arachas (1 of 3),4,Melee,Muster,Basic
+Monsters,Arachas (2 of 3),4,Melee,Muster,Basic
+Monsters,Arachas (3 of 3),4,Melee,Muster,Basic
+Monsters,Botchling,4,Melee,None,Basic
+Monsters,Crone Whispess,6,Melee,Muster,Basic
+Monsters,Earth Elemental,6,Siege,None,Basic
+Monsters,Fiend,6,Melee,None,Basic
+Monsters,Foglet,2,Melee,None,Basic
+Monsters,Ghoul (3 of 3),1,Melee,Muster,Basic
+Monsters,Harpy,2,Melee / Range,Agile,Basic
+Monsters,Ice Giant,5,Siege,None,Basic
+Monsters,Nekker (2 of 3),2,Melee,Muster,Basic
+Monsters,Vampire Ekimmara,4,Melee,Muster,Basic
+Monsters,Vampire Fleder,4,Melee,Muster,Basic
+Monsters,Werewolf,5,Melee,None,Basic
+Monsters,Eredin King of the Wild Hunt,0,Leader,Horn Close Combat,Leaders
+Monsters,Vampire Katakan,5,Melee,Muster,Basic
+Monsters,Draug,10,Melee,None,Hero
+Monsters,Leshen,10,Range,None,Hero
+Monsters,Nekker (1 of 3),2,Melee,Muster,Basic
+Monsters,Arachas Behemoth,6,Siege,Muster,Basic
+Monsters,Celaeno Harpy,2,Range,None,Basic
+Monsters,Cockatrice,2,Range,None,Basic
+Monsters,Crone Brewess,6,Melee,Muster,Basic
+Monsters,Endrega,2,Range,None,Basic
+Monsters,Fire Elemental,6,Siege,None,Basic
+Monsters,Forktail,5,Melee,None,Basic
+Monsters,Frightener,5,Melee,None,Basic
+Monsters,Gargoyle,2,Range,None,Basic
+Monsters,Ghoul (1 of 3),1,Melee,Muster,Basic
+Monsters,Ghoul (2 of 3),1,Melee,Muster,Basic
+Monsters,Grave Hag,5,Range,None,Basic
+Monsters,Griffin,5,Melee,None,Basic
+Monsters,Nekker (3 of 3),2,Melee,Muster,Basic
+Monsters,Plague Maiden,5,Melee,None,Basic
+Monsters,Vampire Garkain,4,Melee,Muster,Basic
+Monsters,Wyvern,2,Range,None,Basic
+Monsters,Imlerith,10,Melee,None,Hero
+Monsters,Kayran,8,Range,Morale,Hero
+Monsters,Vampire Bruxa,4,Melee,Muster,Basic
+Monsters,Eredin Destroyer of Worlds,0,Leader,Medic,Leaders
+Monsters,Eredin Commander of the Red Riders,0,Leader,Pick any weather,Leaders
+Neutral,Decoy (1 of 3),0,Special,Swap with a non-Hero card,Special
+Neutral,Zoltan Chivay,5,Melee,None,Basic
+Neutral,Commander's Horn (1 of 3),0,Special,Double the strength of Row,Special
+Neutral,Decoy (2 of 3),0,Special,Swap with a non-Hero card,Special
+Neutral,Scorch (2 of 3),0,Special,Destroys the strongest Non-Hero Card,Special
+Neutral,Scorch (3 of 3),0,Special,Destroys the strongest Non-Hero Card,Special
+Neutral,Avallac'h (A.K.A Mysterious Elf),0,Melee,Spy,Hero
+Neutral,Emiel Regis Rohellec Terzieff,5,Melee,None,Basic
+Neutral,Villentretenmerth,7,Melee,Destroy opponents Strongest Melee if Melee+10,Basic
+Neutral,Biting Frost (3 of 3),0,Weather,Sets all Non-Hero melee to 1,Special
+Neutral,Clear Weather (2 of 2),0,Weather,Removes all weather,Special
+Neutral,Impenetrable Fog (3 of 3),0,Weather,Sets all Non-Hero range to 1,Special
+Neutral,Torrential Rain (2 of 2),0,Weather,Sets all Non-Hero siege to 1,Special
+Neutral,Commander's Horn (3 of 3),0,Special,Double the strength of Row,Special
+Neutral,Yennefer of Vengerberg,7,Range,Medic,Hero
+Neutral,Decoy (3 of 3),0,Special,Swap with a non-Hero card,Special
+Neutral,Dandelion,2,Melee,Commander's Horn,Basic
+Neutral,Scorch (1 of 3),0,Special,Destroys the strongest Non-Hero Card,Special
+Neutral,Cirilla Fiona Elen Rianno,15,Melee,None,Hero
+Neutral,Commander's Horn (2 of 3),0,Special,Double the strength of Row,Special
+Neutral,Geralt of Rivia,15,Melee,None,Hero
+Neutral,Triss Merigold,7,Melee,None,Hero
+Neutral,Vesemir,6,Melee,None,Basic
+Neutral,Biting Frost (1 of 3),0,Weather,Sets all Non-Hero melee to 1,Special
+Neutral,Biting Frost (2 of 3),0,Weather,Sets all Non-Hero melee to 1,Special
+Neutral,Clear Weather (1 of 2),0,Weather,Removes all weather,Special
+Neutral,Impenetrable Fog (1 of 3),0,Weather,Sets all Non-Hero rangeto 1,Special
+Neutral,Impenetrable Fog (2 of 3),0,Weather,Sets all Non-Hero rangeto 1,Special
+Neutral,Torrential Rain (1 of 2),0,Weather,Sets all Non-Hero siege to 1,Special
+Nilfgaard,Albrich,2,Range,None,Basic
+Nilfgaard,Black Infantry Archer (1 of 2),10,Range,None,Basic
+Nilfgaard,Black Infantry Archer (2 of 2),10,Range,None,Basic
+Nilfgaard,Cynthia,4,Range,None,Basic
+Nilfgaard,Etolian Auxiliary Archers (1 of 2),1,Range,Medic,Basic
+Nilfgaard,Etolian Auxiliary Archers (2 of 2),1,Range,Medic,Basic
+Nilfgaard,Heavy Zerrikanian Fire Scorpion,10,Siege   ,None,Basic
+Nilfgaard,Impera Brigade Guard (1 of 4),3,Melee,Bond,Basic
+Nilfgaard,Impera Brigade Guard (2 of 4),3,Melee,Bond,Basic
+Nilfgaard,Morteisen,3,Melee,None,Basic
+Nilfgaard,Nausicaa Cavalry Rider (1 of 3),2,Melee,Bond,Basic
+Nilfgaard,Nausicaa Cavalry Rider (2 of 3),2,Melee,Bond,Basic
+Nilfgaard,Nausicaa Cavalry Rider (3 of 3),2,Melee,Bond,Basic
+Nilfgaard,Puttkammer,3,Range,None,Basic
+Nilfgaard,Rainfarn,4,Melee,None,Basic
+Nilfgaard,Siege Engineer,6,Siege   ,None,Basic
+Nilfgaard,Sweers,2,Range,None,Basic
+Nilfgaard,Zerrikanian Fire Scorpion,5,Siege   ,None,Basic
+Nilfgaard,Emhyr var Emreis Emperor of Nilfgaard,0,Leader,Look at 3 Opp Cards,Leaders
+Nilfgaard,Letho of Gulet,10,Melee,None,Hero
+Nilfgaard,Menno Coehoorn,10,Melee,None,Hero
+Nilfgaard,Assire var Anahid,6,Range,None,Basic
+Nilfgaard,Emhry var Emrels the White Flame,0,Leader,Cancel Opp Leader,Leaders
+Nilfgaard,Cahir Mawr Dyffryn aep Ceallach,6,Melee,None,Basic
+Nilfgaard,Renuald aep Matsen,5,Range,None,Basic
+Nilfgaard,Rotten Mangonel,3,Siege,None,Basic
+Nilfgaard,Shilard Fitz-Oesterlen,7,Melee,Spy,Basic
+Nilfgaard,Stefan Skellen,9,Melee,Spy,Basic
+Nilfgaard,Vanhemar,4,Range,None,Basic
+Nilfgaard,Vattier de Rideaux,4,Melee,Spy,Basic
+Nilfgaard,Vreemde,2,Melee,None,Basic
+Nilfgaard,Impera Brigade Guard (3 of 4),3,Melee,Bond,Basic
+Nilfgaard,Young Emissary (2 of 2),5,Melee,Bond,Basic
+Nilfgaard,Impera Brigade Guard (4 of 4),3,Melee,Bond,Basic
+Nilfgaard,Young Emissary (1 of 2),5,Melee,Bond,Basic
+Nilfgaard,Siege Technician,0,Siege,Medic,Basic
+Nilfgaard,Morvran Voorhis,10,Siege,None,Hero
+Nilfgaard,Tibor Eggebracht,10,Range,None,Hero
+Nilfgaard,Fringilla Vigo,6,Range,None,Basic
+Nilfgaard,Emhyr var Emreis the Relentless,0,Leader,Draw card from opp Discard,Leaders
+Nilfgaard,Emhry var Emrels His Imperial Majesty,0,Leader,Rain,Leaders
+Northern Realms,Blue Stripes Commando (1 of 3),4,Melee,Bond,Basic
+Northern Realms,Catapult (1 of 2),8,Siege,Bond,Basic
+Northern Realms,Crinfrid Reavers Dragon Hunter (1 of 3),5,Range,Bond,Basic
+Northern Realms,Foltest Lord Commander of the North,0,Leader,Clear Weather,Leaders
+Northern Realms,Crinfrid Reavers Dragon Hunter (2 of 3),5,Range,Bond,Basic
+Northern Realms,Crinfrid Reavers Dragon Hunter (3 of 3),5,Range,Bond,Basic
+Northern Realms,Poor Fucking Infantry (3 of 3),1,Melee,Bond    ,Basic
+Northern Realms,Sigismund Dijkstra,4,Melee,Spy               ,Basic
+Northern Realms,Vernon Roche,10,Melee,None,Hero
+Northern Realms,Thaler,1,Siege,Spy               ,Basic
+Northern Realms,Siege Tower,6,Siege,None,Basic
+Northern Realms,Philippa Eilhart,10,Range,None,Hero
+Northern Realms,Foltest the Siegemaster,0,Leader,Horn on Siege,Leaders
+Northern Realms,Catapult (2 of 2),8,Siege,Bond,Basic
+Northern Realms,Esterad Thyssen,10,Melee,None,Hero
+Northern Realms,John Natalis,10,Melee,None,Hero
+Northern Realms,Foltest the Steel-Forged,0,Leader,Scorch Siege if +10,Leaders
+Northern Realms,Blue Stripes Commando (2 of 3),4,Melee,Bond,Basic
+Northern Realms,Blue Stripes Commando (3 of 3),4,Melee,Bond,Basic
+Northern Realms,Dethmold,6,Range,None,Basic
+Northern Realms,Dun Banner Medic,5,Siege,Medic,Basic
+Northern Realms,Kaedweni Siege Expert (1 of 3),1,Siege,Morale,Basic
+Northern Realms,Kaedweni Siege Expert (2 of 3),1,Siege,Morale,Basic
+Northern Realms,Kaedweni Siege Expert (3 of 3),1,Siege,Morale,Basic
+Northern Realms,Keira Metz,5,Range,None,Basic
+Northern Realms,Poor Fucking Infantry (1 of 3),1,Melee,Bond,Basic
+Northern Realms,Poor Fucking Infantry (2 of 3),1,Melee,Bond,Basic
+Northern Realms,Prince Stennis,5,Melee,Spy,Basic
+Northern Realms,Redanian Foot Soldier (1 of 2),1,Melee,None,Basic
+Northern Realms,Redanian Foot Soldier (2 of 2),1,Melee,None,Basic
+Northern Realms,Sabrina Glevissig,4,Range,None,Basic
+Northern Realms,Sheldon Skaggs,4,Range,None,Basic
+Northern Realms,Siegfried of Denesle,5,Melee,None,Basic
+Northern Realms,Sıĺ e de Tansarville,5,Range,None,Basic
+Northern Realms,Trebuchet (1 of 2),6,Siege,None,Basic
+Northern Realms,Trebuchet (2 of 2),6,Siege,None,Basic
+Northern Realms,Ves,5,Melee,None,Basic
+Northern Realms,Yarpen Zigrin,2,Melee,None,Basic
+Northern Realms,Foltest King of Temeria,0,Leader,Fog,Leaders
+Scoia'tael,Elven Skirmisher (3 of 3),2,Range,Muster,Basic
+Scoia'tael,Yaevinn,6,Melee / Range,Agile,Basic
+Scoia'tael,Iorveth,10,Range,None,Hero
+Scoia'tael,Ciaran aep Easnillien,3,Melee / Range,Agile,Basic
+Scoia'tael,Dennis Cranmer,6,Melee / Range,None,Basic
+Scoia'tael,Dol Blathanna Scout (1 of 3),6,Melee / Range,Agile,Basic
+Scoia'tael,Dol Blathanna Scout (2 of 3),6,Melee / Range,Agile,Basic
+Scoia'tael,Dwarven Skirmisher (1 of 3),3,Melee,Muster,Basic
+Scoia'tael,Dwarven Skirmisher (2 of 3),3,Melee,Muster,Basic
+Scoia'tael,Elven Skirmisher (1 of 3),2,Range,Muster,Basic
+Scoia'tael,Elven Skirmisher (2 of 3),2,Range,Muster,Basic
+Scoia'tael,Filavandrel aen Fidhail,6,Melee / Range,Agile,Basic
+Scoia'tael,Havekar Healer (1 of 3),0,Range,Medic,Basic
+Scoia'tael,Havekar Smuggler (2 of 3),5,Melee,Muster,Basic
+Scoia'tael,Ida Emean aep Sivney,6,Range,None,Basic
+Scoia'tael,Riordain,1,Range,None,Basic
+Scoia'tael,Toruviel,2,Range,None,Basic
+Scoia'tael,Vrihedd Brigade Recruit,4,Range,None,Basic
+Scoia'tael,Dwarven Skirmisher (3 of 3),3,Melee,Muster,Basic
+Scoia'tael,Mahakaman Defender (4 of 5),5,Melee,None,Basic
+Scoia'tael,Vrihedd Brigade Veteran (1 of 2),5,Melee / Range,Agile,Basic
+Scoia'tael,Havekar Smuggler (1 of 3),5,Melee,Muster,Basic
+Scoia'tael,Mahakaman Defender (3 of 5),5,Melee,None,Basic
+Scoia'tael,Saesenthessis,10,Range,None,Hero
+Scoia'tael,Milva,10,Range,Morale,Basic
+Scoia'tael,Francesca Findabair Daisy of The Valley,0,Leader,Draw extra card,Leaders
+Scoia'tael,Havekar Healer (2 of 3),0,Range,Medic,Basic
+Scoia'tael,Francesca Findabair Pureblood Elf,0,Leader,Frost,Leaders
+Scoia'tael,Barclay Els,6,Melee / Range,Agile,Basic
+Scoia'tael,Dol Blathanna Archer,4,Range,None,Basic
+Scoia'tael,Dol Blathanna Scout (3 of 3),6,Melee / Range,Agile,Basic
+Scoia'tael,Havekar Healer (3 of 3),0,Range,Medic,Basic
+Scoia'tael,Havekar Smuggler (3 of 3),5,Melee,Muster,Basic
+Scoia'tael,Mahakaman Defender (1 of 5),5,Melee,None,Basic
+Scoia'tael,Mahakaman Defender (2 of 5),5,Melee,None,Basic
+Scoia'tael,Mahakaman Defender (5 of 5),5,Melee,None,Basic
+Scoia'tael,Vrihedd Brigade Veteran (2 of 2),5,Melee / Range,Agile,Basic
+Scoia'tael,Eithné,10,Range,None,Hero
+Scoia'tael,Francesca Findabair the Beautiful,0,Leader,Horn on Ranged,Leaders
+Scoia'tael,Isengrim Faolitarna,10,Melee,"Morale, ",Hero
+Scoia'tael,Francesca Findabair Queen of Dol Blath..,0,Leader,Scorch Close Combat if + 10 ,Leaders
+Northern Realms,Foltest Son of Medell,0,Leader,Scorch Ranged Combat of +10 strength,Leaders
+Scoia'tael,Francesca Findabair Hope of the Aen Seidhe,0,Leader,Move agile units to whichever valid row maximizes their strength,Leaders
+Scoia'tael,Schirru,8,Siege,Scorch siege if +10 strength,Basic
+Monsters,Eredin Breacc Glas The Treacherous,0,Leader,Passive: Double Strength of all spies (Both players),Leaders
+Monsters,Toad,7,Range,Scorch ranged if +10 strength ,Basic
+Nilfgaard,Emhyr var Emreis Invader of The North,0,Leader,Abilities that restore a unit to the battlefield restore a randomly-chosen unit. Affects both players,Leaders
+Neutral,Olgierd von Everec,6,Melee / Range,Agile,Basic
+Neutral,Gaunter O'Dimm: Darkness (1 of 3),4,Range,Muster,Basic
+Neutral,Gaunter O'Dimm: Darkness (2 of 3),4,Range,Muster,Basic
+Neutral,Gaunter O'Dimm: Darkness (3 of 3),4,Range,Muster,Basic
+Neutral,Gaunter O'Dimm,2,Siege,Muster,Basic
+Neutral,Cow,0,Range,"""Mooo!"" (Spawns a fiend with 8 strength in the melee row on the next round)",Basic
+Skellige,Clan Drummond Shield Maiden (1 of 3),4,Melee,Bond,Basic
+Skellige,Crach an Craite,0,Leader,Shuffles all cards from each player's graveyard back into their decks,Leaders
+Skellige,Madman Lugos,6,Melee,None,Basic
+Skellige,Blueboy Lugos,6,Melee,None,Basic
+Skellige,Clan an Craite Warrior (1 of 3),6,Melee,Bond,Basic
+Skellige,Clan an Craite Warrior (2 of 3),6,Melee,Bond,Basic
+Skellige,Clan an Craite Warrior (3 of 3),6,Melee,Bond,Basic
+Skellige,War Longship (1 of 3),6,Siege,Bond,Basic
+Skellige,War Longship (2 of 3),6,Siege,Bond,Basic
+Skellige,Clan Brokvar Archer (1 of 3),6,Range,None,Basic
+Skellige,Clan Brokvar Archer (2 of 3),6,Range,None,Basic
+Skellige,Holger Blackhand,4,Siege,None,Basic
+Skellige,Mardroeme (1 of 3),0,Special,Triggers transformation of all Beserker cards on the same row,Special
+Skellige,Hjalmar,10,Range,None,Hero
+Skellige,Donar an Hindar,4,Melee,None,Basic
+Skellige,Udalryk,4,Melee,None,Basic
+Skellige,Svanrige,4,Melee,None,Basic
+Skellige,Berserker,4,Melee,Transforms into a bear when a Mardroeme card is on its row,Basic
+Skellige,Clan Tordarroch Armorsmith,4,Melee,None,Basic
+Skellige,Clan Heymaey Skald,4,Melee,None,Basic
+Skellige,Light Longship (1 of 3),4,Range,Muster,Basic
+Skellige,Light Longship (2 of 3),4,Range,Muster,Basic
+Skellige,Clan Drummond Shield Maiden (2 of 3),4,Melee,Bond,Basic
+Skellige,Birna Bran,2,Melee,Medic,Basic
+Skellige,Young Berserker (1 of 3),2,Range,Transforms into a bear when a Mardroeme card is on its row,Basic
+Skellige,Draig Bon-Dhu,2,Siege,Doubles the strength of all unit cards in that row. Limited 1 per row,Basic
+Skellige,Kambi,0,Melee,"When this card is removed from the battlefield, it summons a powerful new Unit Card to take its place",Basic
+Skellige,Clan Dimun Pirate,6,Range,Kills the strongest card(s) on the battlefield,Basic
+Skellige,Mardroeme (2 of 3),0,Special,Triggers transformation of all Beserker cards on the same row,Special
+Skellige,Olaf,12,Melee / Range,Morale,Basic
+Skellige,Light Longship (3 of 3),4,Range,Muster,Basic
+Skellige,King Bran,0,Leader,Units only lose half their Strength in bad weather conditions,Leaders
+Skellige,Young Berserker (2 of 3),2,Range,Transforms into a bear when a Mardroeme card is on its row,Basic
+Skellige,Skellige Storm (1 of 3),0,Special,Reduces the Strength of all Range and Siege Units to 1,Special
+Skellige,War Longship (3 of 3),6,Siege,Bond,Basic
+Skellige,Young Berserker (3 of 3),2,Range,Transforms into a bear when a Mardroeme card is on its row,Basic
+Skellige,Skellige Storm (2 of 3),0,Special,Reduces the Strength of all Range and Siege Units to 1,Special
+Skellige,Clan Brokvar Archer (3 of 3) ,6,Range,None,Basic
+Skellige,Cerys,10,Range,Muster (Summons all Shield Maidens from deck and hand),Hero
+Skellige,Mardroeme (3 of 3),0,Special,Triggers transformation of all Beserker cards on the same row,Special
+Skellige,Skellige Storm (3 of 3),0,Special,Reduces the Strength of all Range and Siege Units to 1,Special
+Skellige,Ermion,8,Range,Mardroeme,Hero
+Skellige,Clan Drummond Shield Maiden (3 of 3),4,Melee,Bond,Basic
