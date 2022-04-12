@@ -16,11 +16,35 @@
     </style>
     <!--  Three.js CDN  -->
     <script src=></script>
+    <script src="./PapaParse-5.0.2/papaparse.js"></script>
 </head>
 
 <body>
     <!--  Our code  -->
     <script type="module">
+        //import Papa from './PapaParse-5.0.2/';
+        const response = await fetch('cards1.csv');
+        const text = await response.text();
+
+        let cardData;
+        var data = Papa.parse(text, {
+            header: true,
+            complete: function (results) {
+                cardData = results.data;
+            }
+        })
+
+        cardData.forEach(function myfunc(card) {
+            card['leader'] = parseInt(card['leader']);
+            card['horn'] = parseInt(card['horn']);
+            card['decoy'] = parseInt(card['decoy']);
+            card['weather'] = parseInt(card['weather']);
+            card['melee'] = parseInt(card['melee']);
+            card['ranged'] = parseInt(card['ranged']);
+            card['siege'] = parseInt(card['siege']);
+            card['strength'] = parseInt(card['strength']);
+            card['hero'] = parseInt(card['hero']);
+        });
 
         import * as THREE from './three.js-master/build/three.module.js';
 
@@ -28,6 +52,159 @@
         /** @namespace */
         var THREEx = THREEx || {};
 
+        makeTHREEx();
+
+        let container;
+
+        let camera, scene, renderer;
+
+        let group;
+
+        let targetRotation = 0;
+        let targetRotationOnPointerDown = 0;
+
+        let pointerX = 0;
+        let pointerXOnPointerDown = 0;
+
+        let windowHalfX = window.innerWidth / 2;
+
+        let mesh;
+
+        let vis = true;
+
+        init();
+        animate();
+
+        function init() {
+
+            container = document.createElement('div');
+            document.body.appendChild(container);
+
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0xf0f0f0);
+
+            camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 1000);
+            camera.position.set(0, 150, 500);
+            scene.add(camera);
+
+            const light = new THREE.PointLight(0xffffff, .8);
+            camera.add(light);
+
+            group = new THREE.Group();
+            group.position.y = 50;
+            scene.add(group);
+
+            const loader = new THREE.TextureLoader();
+            loader.crossOrigin = "anonymous";
+            let texture = loader.load("textures/Avallach.png");
+
+            // it's necessary to apply these settings in order to correctly display the texture on a shape geometry
+
+            texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+            texture.repeat.set(0.008, 0.005);
+
+
+
+            // Rounded rectangle
+
+            const roundedRectShape = new THREE.Shape();
+
+            roundedRect(roundedRectShape, 0, 0, 120, 200, 10);
+
+            let extrudeSettings = { depth: 4, bevelEnabled: false, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
+
+            addShape(roundedRectShape, extrudeSettings, 0x008000, texture, -100, 0, 0, 0, 0, 0, 1);
+
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            container.appendChild(renderer.domElement);
+
+            container.style.touchAction = 'none';
+
+            let domEvents = new THREEx.DomEvents(camera, renderer.domElement)
+
+            ///////
+            let x = -400;
+            let y = 200;
+            let z = 0;
+
+            cardData.forEach(testDisplay);
+            function testDisplay(d) {
+                if (!d["leader"]) {
+                    const cardShape = new THREE.Shape();
+                    roundedRect(cardShape, x, y, 120, 200, 10);
+                    extrudeSettings = { depth: 4, bevelEnabled: false, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
+
+                    texture = loader.load(d["image"]);
+
+                    // it's necessary to apply these settings in order to correctly display the texture on a shape geometry
+
+                    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+                    texture.repeat.set(0.008, 0.005);
+
+                    addShape(roundedRectShape, extrudeSettings, 0x008000, texture, x % 1000 - 400, y, z, 0, 0, 0, 1);
+
+                    x += 100;
+                    if (x % 1000 == 0 && x != 0) {
+                        y -= 100;
+                    }
+                    z += 1;
+
+                    domEvents.addEventListener(mesh, "click", function (event) {
+                        //ADD EVENT
+                        vis = !vis;
+                    }, false)
+                }
+            }
+            //
+
+        }
+
+        function roundedRect(ctx, x, y, width, height, radius) {
+
+            ctx.moveTo(x, y + radius);
+            ctx.lineTo(x, y + height - radius);
+            ctx.quadraticCurveTo(x, y + height, x + radius, y + height);
+            ctx.lineTo(x + width - radius, y + height);
+            ctx.quadraticCurveTo(x + width, y + height, x + width, y + height - radius);
+            ctx.lineTo(x + width, y + radius);
+            ctx.quadraticCurveTo(x + width, y, x + width - radius, y);
+            ctx.lineTo(x + radius, y);
+            ctx.quadraticCurveTo(x, y, x, y + radius);
+
+        }
+
+        function addShape(shape, extrudeSettings, color, texture, x, y, z, rx, ry, rz, s) {
+            // extruded shape
+
+            const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
+
+            mesh = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial({ map: texture }));
+            mesh.position.set(x, y, z - 75);
+            mesh.rotation.set(rx, ry, rz);
+            mesh.scale.set(s, s, s);
+            group.add(mesh);
+        }
+
+        function animate() {
+
+            requestAnimationFrame(animate);
+
+            render();
+        }
+
+        function render() {
+
+            group.rotation.y += (targetRotation - group.rotation.y) * 0.05;
+            renderer.render(scene, camera);
+            mesh.visible = vis;
+
+        }
+
+        renderer.domElement.addEventListener("click", onclick, true);
+
+        /////
         function makeTHREEx() {
             // # Constructor
             THREEx.DomEvents = function (camera, domElement) {
@@ -396,139 +573,11 @@
             //
         }
 
-        makeTHREEx();
-
-        let container;
-
-        let camera, scene, renderer;
-
-        let group;
-
-        let targetRotation = 0;
-        let targetRotationOnPointerDown = 0;
-
-        let pointerX = 0;
-        let pointerXOnPointerDown = 0;
-
-        let windowHalfX = window.innerWidth / 2;
-
-        let mesh;
-
-        let vis = true;
-
-        init();
-        animate();
-
-        function init() {
-
-            container = document.createElement('div');
-            document.body.appendChild(container);
-
-            scene = new THREE.Scene();
-            scene.background = new THREE.Color(0xf0f0f0);
-
-            camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 1000);
-            camera.position.set(0, 150, 500);
-            scene.add(camera);
-
-            const light = new THREE.PointLight(0xffffff, .8);
-            camera.add(light);
-
-            group = new THREE.Group();
-            group.position.y = 50;
-            scene.add(group);
-
-            const loader = new THREE.TextureLoader();
-            loader.crossOrigin = "anonymous";
-            const texture = loader.load("textures/Avallach.png");
-
-            // it's necessary to apply these settings in order to correctly display the texture on a shape geometry
-
-            texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-            texture.repeat.set(0.008, 0.005);
-
-
-
-            // Rounded rectangle
-
-            const roundedRectShape = new THREE.Shape();
-
-            (function roundedRect(ctx, x, y, width, height, radius) {
-
-                ctx.moveTo(x, y + radius);
-                ctx.lineTo(x, y + height - radius);
-                ctx.quadraticCurveTo(x, y + height, x + radius, y + height);
-                ctx.lineTo(x + width - radius, y + height);
-                ctx.quadraticCurveTo(x + width, y + height, x + width, y + height - radius);
-                ctx.lineTo(x + width, y + radius);
-                ctx.quadraticCurveTo(x + width, y, x + width - radius, y);
-                ctx.lineTo(x + radius, y);
-                ctx.quadraticCurveTo(x, y, x, y + radius);
-
-            })(roundedRectShape, 0, 0, 120, 200, 10);
-
-            const extrudeSettings = { depth: 4, bevelEnabled: false, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
-
-            addShape(roundedRectShape, extrudeSettings, 0x008000, texture, -60, 0, 0, 0, 0, 0, 1);
-
-
-
-            renderer = new THREE.WebGLRenderer({ antialias: true });
-            renderer.setPixelRatio(window.devicePixelRatio);
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            container.appendChild(renderer.domElement);
-
-            container.style.touchAction = 'none';
-
-            let domEvents = new THREEx.DomEvents(camera, renderer.domElement)
-
-            ///////
-            domEvents.addEventListener(mesh, "click", function (event) {
-                //ADD EVENT
-                vis = !vis;
-            }, false)
-            //
-
-        }
-
-        function addShape(shape, extrudeSettings, color, texture, x, y, z, rx, ry, rz, s) {
-            // extruded shape
-
-            const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
-
-            mesh = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial({ map: texture }));
-            mesh.position.set(x, y, z - 75);
-            mesh.rotation.set(rx, ry, rz);
-            mesh.scale.set(s, s, s);
-            group.add(mesh);
-        }
-
-        function animate() {
-
-            requestAnimationFrame(animate);
-
-            render();
-        }
-
-        function render() {
-
-            group.rotation.y += (targetRotation - group.rotation.y) * 0.05;
-            renderer.render(scene, camera);
-            mesh.visible = vis;
-
-        }
-
-        renderer.domElement.addEventListener("click", onclick, true);
-
-
-
-        /////
-
-
 
 
         /////
     </script>
+    <p></p>
 </body>
 
 </html>
