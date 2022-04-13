@@ -22,7 +22,7 @@
 <body>
     <!--  Our code  -->
     <script type="module">
-        //import Papa from './PapaParse-5.0.2/';
+
         const response = await fetch('cards1.csv');
         const text = await response.text();
 
@@ -105,11 +105,14 @@
 
             const testShape = new THREE.Shape();
             roundedRect(testShape, 0, 0, 135, 220, 10);
-            extrudeSettings = { depth: 4, bevelEnabled: false, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
+            extrudeSettings = { depth: 0, bevelEnabled: false, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
 
             let texture;
 
-            // Rounded rectangle
+            texture = loader.load("textures/sparkimage.png");
+            texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+            texture.repeat.set(0.0062, 0.004);
+            addShape(testShape, extrudeSettings, 0x008000, texture, -300, 0, 100, 0, 0, 0, 1);
 
             renderer = new THREE.WebGLRenderer({ antialias: true });
             renderer.setPixelRatio(window.devicePixelRatio);
@@ -235,13 +238,12 @@
         }
 
         function addShape(shape, extrudeSettings, color, texture, x, y, z, rx, ry, rz, s) {
-            // extruded shape
+
             console.log(texture);
             const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
-            //if (texture)
-            mesh = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial({ map: texture }));
-            //else
-            //mesh = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial({ color: color }));
+
+            mesh = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial({ map: texture, transparent: true }));
+
             mesh.position.set(x, y, z - 75);
             mesh.rotation.set(rx, ry, rz);
             mesh.scale.set(s, s, s);
