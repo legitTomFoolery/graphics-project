@@ -17,10 +17,6 @@
     <!--  Three.js CDN  -->
     <script src=></script>
     <script src="./PapaParse-5.0.2/papaparse.js"></script>
-
-    <video id="video" loop crossOrigin="anonymous" playsinline style="display:none">
-        <source src="textures/sparks.webm">
-    </video>
 </head>
 
 <body>
@@ -76,6 +72,10 @@
 
         let vis = true;
 
+        let selected = 0;
+
+        let melee = [];
+
         init();
         animate();
 
@@ -108,18 +108,6 @@
             extrudeSettings = { depth: 4, bevelEnabled: false, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
 
             let texture;
-            const video = document.getElementById('video');
-
-            const vTexture = new THREE.VideoTexture(video);
-            vTexture.format = THREE.RGBAFormat;
-            // it's necessary to apply these settings in order to correctly display the texture on a shape geometry
-
-            vTexture.wrapS = vTexture.wrapT = THREE.RepeatWrapping;
-            vTexture.repeat.set(0.0085, 0.005);
-
-            addShape(testShape, extrudeSettings, 0x008000, vTexture, 0, 0, 40, 0, 0, 0, 1);
-            let overlayMesh = mesh;
-            overlayMesh.visible = false;
 
             // Rounded rectangle
 
@@ -132,17 +120,51 @@
 
             let domEvents = new THREEx.DomEvents(camera, renderer.domElement)
 
+            const rowShape = new THREE.Shape();
+            roundedRect(rowShape, 0, 0, 800, 200, 10);
+            extrudeSettings = { depth: 4, bevelEnabled: false, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
+
+            texture = loader.load("textures/wood.jpg");
+            texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+            texture.repeat.set(0.0012, 0.005);
+            addShape(rowShape, extrudeSettings, 0x008000, texture, -300, 0, 0, 0, 0, 0, 1);
+
+            domEvents.addEventListener(mesh, "click", function (event) {
+                if (selected && !melee.includes(selected)) {
+                    melee.push(selected);
+                    melee.sort(function (a, b) {
+                        return -(b["strength"] - a["strength"]);
+                    })
+                    let place = 0;
+                    let start = -50 * melee.length + 90;
+                    if (melee.length >= 8)
+                        start = -270;
+                    if (melee.length == 10)
+                        start = -280;
+                    for (place = 0; place < melee.length; place++) {
+                        melee[place]["mesh"].position.z = place * 2 - 60;
+                        melee[place]["mesh"].position.y = 10;
+                        if (melee.length < 8)
+                            melee[place]["mesh"].position.x = start + place * (100);
+                        else
+                            melee[place]["mesh"].position.x = start + place * (700 / melee.length);
+                    }
+                    selected = 0;
+                }
+            });
+
             ///////
             let x = 0;
-            let y = 0;
-            let z = 0;
+            let y = -160;
+            let z = 10;
 
             let meshes = [];
             let topMeshes = [];
 
             cardData.forEach(testDisplay);
             function testDisplay(d) {
-                if (!d["leader"] && d["strength"] > 5) {
+                if (!d["leader"] && d["strength"] > 5
+                    && x / 1000 < 1) {
                     const cardShape = new THREE.Shape();
                     roundedRect(cardShape, 0, 0, 115, 200, 10);
                     extrudeSettings = { depth: 4, bevelEnabled: false, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
@@ -154,7 +176,7 @@
                     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
                     texture.repeat.set(0.0085, 0.005);
 
-                    addShape(cardShape, extrudeSettings, 0x008000, texture, x % 1000 - 500, y, z, 0, 0, 0, 1);
+                    addShape(cardShape, extrudeSettings, 0x008000, texture, x % 1000 - 500, y, z, 0, 0, 0, .9);
 
                     meshes.push(mesh);
                     let currentMesh = meshes.length - 1;
@@ -163,47 +185,28 @@
 
                     domEvents.addEventListener(meshes[currentMesh], "mouseover", function (event) {
                         //ADD EVENT
-                        d["mesh"].position.z += 30;
-                        d["overlay"].position.z -= 30;
-
-                        //meshes[currentMesh].visible = !meshes[currentMesh].visible;
+                        if (!selected && !melee.includes(d)) {
+                            d["mesh"].position.z += 10;
+                            d["mesh"].position.y += 20;
+                        }
                     }, false);
                     domEvents.addEventListener(meshes[currentMesh], "mouseout", function (event) {
                         //ADD EVENT
-                        d["mesh"].position.z -= 30;
-                        d["overlay"].position.z -= 30;
-                        //meshes[currentMesh].visible = !meshes[currentMesh].visible;
+                        if (!selected && !melee.includes(d)) {
+                            d["mesh"].position.z -= 10;
+                            d["mesh"].position.y -= 20;
+                        }
                     }, false);
                     domEvents.addEventListener(meshes[currentMesh], "click", function (event) {
-                        d["overlay"].visible = true;
-                        setTimeout(function () {
-                        }, 2000);
-                        d["overlay"].visible = false;
-
-                        overlayMesh.visible = true;
-                        console.log("start");
-                        video.play()
-                        setTimeout(function () {
-                            console.log("stop");
-                            d["overlay"].visible = true;
-                        }, 2000);
-
+                        if (!selected && !melee.includes(d))
+                            selected = d;
+                        else if (selected == d)
+                            selected = 0;
                     });
 
-                    const overlayShape = new THREE.Shape();
-                    roundedRect(overlayShape, -10, 10, 135, 220, 10);
-
-                    texture = loader.load("textures/sparks.webm");
 
                     // it's necessary to apply these settings in order to correctly display the texture on a shape geometry
 
-                    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-                    texture.repeat.set(0.008, 0.005);
-
-                    addShape(cardShape, extrudeSettings, 0x008000, texture, x % 1000 - 500, y, z, 0, 0, 0, 1);
-                    d["overlay"] = mesh;
-
-                    d["overlay"].visible = true;
 
                     x += 100;
                     if (x % 1000 == 0 && x != 0) {
@@ -233,10 +236,12 @@
 
         function addShape(shape, extrudeSettings, color, texture, x, y, z, rx, ry, rz, s) {
             // extruded shape
-
+            console.log(texture);
             const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
-
+            //if (texture)
             mesh = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial({ map: texture }));
+            //else
+            //mesh = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial({ color: color }));
             mesh.position.set(x, y, z - 75);
             mesh.rotation.set(rx, ry, rz);
             mesh.scale.set(s, s, s);
