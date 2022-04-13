@@ -17,6 +17,10 @@
     <!--  Three.js CDN  -->
     <script src=></script>
     <script src="./PapaParse-5.0.2/papaparse.js"></script>
+
+    <video id="video" loop crossOrigin="anonymous" playsinline style="display:none">
+        <source src="textures/sparks.webm">
+    </video>
 </head>
 
 <body>
@@ -94,26 +98,30 @@
             group.position.y = 50;
             scene.add(group);
 
+            let extrudeSettings;
+
             const loader = new THREE.TextureLoader();
             loader.crossOrigin = "anonymous";
-            let texture = loader.load("textures/Avallach.png");
 
+            const testShape = new THREE.Shape();
+            roundedRect(testShape, 0, 0, 135, 220, 10);
+            extrudeSettings = { depth: 4, bevelEnabled: false, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
+
+            let texture;
+            const video = document.getElementById('video');
+
+            const vTexture = new THREE.VideoTexture(video);
+            vTexture.format = THREE.RGBAFormat;
             // it's necessary to apply these settings in order to correctly display the texture on a shape geometry
 
-            texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-            texture.repeat.set(0.008, 0.005);
+            vTexture.wrapS = vTexture.wrapT = THREE.RepeatWrapping;
+            vTexture.repeat.set(0.0085, 0.005);
 
-
+            addShape(testShape, extrudeSettings, 0x008000, vTexture, 0, 0, 40, 0, 0, 0, 1);
+            let overlayMesh = mesh;
+            overlayMesh.visible = false;
 
             // Rounded rectangle
-
-            const roundedRectShape = new THREE.Shape();
-
-            roundedRect(roundedRectShape, 0, 0, 120, 200, 10);
-
-            let extrudeSettings = { depth: 4, bevelEnabled: false, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
-
-            addShape(roundedRectShape, extrudeSettings, 0x008000, texture, -100, 0, 0, 0, 0, 0, 1);
 
             renderer = new THREE.WebGLRenderer({ antialias: true });
             renderer.setPixelRatio(window.devicePixelRatio);
@@ -125,15 +133,18 @@
             let domEvents = new THREEx.DomEvents(camera, renderer.domElement)
 
             ///////
-            let x = -400;
-            let y = 200;
+            let x = 0;
+            let y = 0;
             let z = 0;
+
+            let meshes = [];
+            let topMeshes = [];
 
             cardData.forEach(testDisplay);
             function testDisplay(d) {
-                if (!d["leader"]) {
+                if (!d["leader"] && d["strength"] > 5) {
                     const cardShape = new THREE.Shape();
-                    roundedRect(cardShape, x, y, 120, 200, 10);
+                    roundedRect(cardShape, 0, 0, 115, 200, 10);
                     extrudeSettings = { depth: 4, bevelEnabled: false, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
 
                     texture = loader.load(d["image"]);
@@ -141,20 +152,65 @@
                     // it's necessary to apply these settings in order to correctly display the texture on a shape geometry
 
                     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+                    texture.repeat.set(0.0085, 0.005);
+
+                    addShape(cardShape, extrudeSettings, 0x008000, texture, x % 1000 - 500, y, z, 0, 0, 0, 1);
+
+                    meshes.push(mesh);
+                    let currentMesh = meshes.length - 1;
+
+                    d["mesh"] = mesh;
+
+                    domEvents.addEventListener(meshes[currentMesh], "mouseover", function (event) {
+                        //ADD EVENT
+                        d["mesh"].position.z += 30;
+                        d["overlay"].position.z -= 30;
+
+                        //meshes[currentMesh].visible = !meshes[currentMesh].visible;
+                    }, false);
+                    domEvents.addEventListener(meshes[currentMesh], "mouseout", function (event) {
+                        //ADD EVENT
+                        d["mesh"].position.z -= 30;
+                        d["overlay"].position.z -= 30;
+                        //meshes[currentMesh].visible = !meshes[currentMesh].visible;
+                    }, false);
+                    domEvents.addEventListener(meshes[currentMesh], "click", function (event) {
+                        d["overlay"].visible = true;
+                        setTimeout(function () {
+                        }, 2000);
+                        d["overlay"].visible = false;
+
+                        overlayMesh.visible = true;
+                        console.log("start");
+                        video.play()
+                        setTimeout(function () {
+                            console.log("stop");
+                            d["overlay"].visible = true;
+                        }, 2000);
+
+                    });
+
+                    const overlayShape = new THREE.Shape();
+                    roundedRect(overlayShape, -10, 10, 135, 220, 10);
+
+                    texture = loader.load("textures/sparks.webm");
+
+                    // it's necessary to apply these settings in order to correctly display the texture on a shape geometry
+
+                    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
                     texture.repeat.set(0.008, 0.005);
 
-                    addShape(roundedRectShape, extrudeSettings, 0x008000, texture, x % 1000 - 400, y, z, 0, 0, 0, 1);
+                    addShape(cardShape, extrudeSettings, 0x008000, texture, x % 1000 - 500, y, z, 0, 0, 0, 1);
+                    d["overlay"] = mesh;
+
+                    d["overlay"].visible = true;
 
                     x += 100;
                     if (x % 1000 == 0 && x != 0) {
                         y -= 100;
+                        z = 0
                     }
-                    z += 1;
-
-                    domEvents.addEventListener(mesh, "click", function (event) {
-                        //ADD EVENT
-                        vis = !vis;
-                    }, false)
+                    z += 2;
                 }
             }
             //
@@ -198,7 +254,7 @@
 
             group.rotation.y += (targetRotation - group.rotation.y) * 0.05;
             renderer.render(scene, camera);
-            mesh.visible = vis;
+            //mesh.visible = vis;
 
         }
 
