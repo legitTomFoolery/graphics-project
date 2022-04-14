@@ -201,10 +201,19 @@
                         }
                     }, false);
                     domEvents.addEventListener(meshes[currentMesh], "click", function (event) {
-                        if (!selected && !melee.includes(d))
+                        if (!selected && !melee.includes(d)) {
                             selected = d;
-                        else if (selected == d)
+                            setTimeout(function() {
+                                console.log('hi');
+                                var image = new Image();
+                                image.src = './textures/ballista.png';
+                                image.crossOrigin = 'anonymous';
+                                selected["mesh"].material.map.source.data = image;
+                                selected["mesh"].material.map.needsUpdate = true;
+                            }, 1);
+                        } else if (selected == d) {
                             selected = 0;
+                        }
                     });
 
 
