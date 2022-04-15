@@ -20,10 +20,14 @@
 </head>
 
 <body>
+    <audio controls loop>
+        <source src="./audio/Gwent_Music.mp3" type="audio/mpeg">
+        Your browser does not support he audio element
+    </audio>
     <!--  Our code  -->
     <script type="module">
 
-        const response = await fetch('cards1.csv');
+        const response = await fetch('cards2.csv');
         const text = await response.text();
 
         let cardData;
@@ -33,6 +37,8 @@
                 cardData = results.data;
             }
         })
+
+        var snd;
 
         cardData.forEach(function myfunc(card) {
             card['leader'] = parseInt(card['leader']);
@@ -44,6 +50,9 @@
             card['siege'] = parseInt(card['siege']);
             card['strength'] = parseInt(card['strength']);
             card['hero'] = parseInt(card['hero']);
+            snd = new Audio(card['audio'])
+            card['audio'] = snd;
+
         });
 
         import * as THREE from './three.js-master/build/three.module.js';
@@ -152,6 +161,8 @@
                         else
                             melee[place]["mesh"].position.x = start + place * (700 / melee.length);
                     }
+                    selected['audio'].play();
+                    selected['audio'].currentTime = 0;
                     selected = 0;
                 }
             });
