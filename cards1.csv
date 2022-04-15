@@ -1,72 +1,72 @@
-name,faction,leader,horn,decoy,weather,melee,ranged,siege,strength,hero,ability,abilityDescription,image
-Avallac'h,Neutral,0,0,0,0,1,0,0,0,1,Spy,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/avallach.png
-Ballista,Northern Realms,0,0,0,0,0,0,1,6,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/ballista.png
-Ballista,Northern Realms,0,0,0,0,0,0,1,6,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/ballista2.png
-Biting Frost,Neutral,0,0,0,1,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/bitingfrost.png
-Biting Frost,Neutral,0,0,0,1,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/bitingfrost.png
-Biting Frost,Neutral,0,0,0,1,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/bitingfrost.png
-Blue Stripes Commando,Northern Realms,0,0,0,0,1,0,0,4,0,Bond,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/bluestripescommando.png
-Blue Stripes Commando,Northern Realms,0,0,0,0,1,0,0,4,0,Bond,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/bluestripescommando.png
-Blue Stripes Commando,Northern Realms,0,0,0,0,1,0,0,4,0,Bond,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/bluestripescommando.png
-Catapult,Northern Realms,0,0,0,0,0,0,1,8,0,Bond,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/catapult.png
-Catapult,Northern Realms,0,0,0,0,0,0,1,8,0,Bond,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/catapult.png
-Crinfrid Reavers Dragon Hunter,Northern Realms,0,0,0,0,0,1,0,5,0,Bond,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/crinfridreavers.png
-Crinfrid Reavers Dragon Hunter,Northern Realms,0,0,0,0,0,1,0,5,0,Bond,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/crinfridreavers.png
-Crinfrid Reavers Dragon Hunter,Northern Realms,0,0,0,0,0,1,0,5,0,Bond,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/crinfridreavers.png
-Cirilla Fiona Elen Rianno,Neutral,0,0,0,0,1,0,0,15,1,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/ciri.png
-Clear Weather,Neutral,0,0,0,1,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/clearweather.png
-Clear Weather,Neutral,0,0,0,1,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/clearweather.png
-Clear Weather,Neutral,0,0,0,1,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/clearweather.png
-Commander's Horn,Neutral,0,1,0,0,0,0,0,-1,0,Horn,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/commanders.png
-Commander's Horn,Neutral,0,1,0,0,0,0,0,-1,0,Horn,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/commanders.png
-Commander's Horn,Neutral,0,1,0,0,0,0,0,-1,0,Horn,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/commanders.png
-Dandelion,Neutral,0,0,0,0,1,0,0,2,0,Horn,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/dandelion.png
-Decoy,Neutral,0,0,1,0,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/decoy.png
-Decoy,Neutral,0,0,1,0,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/decoy.png
-Decoy,Neutral,0,0,1,0,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/decoy.png
-Dethmold,Northern Realms,0,0,0,0,0,1,0,6,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/dethmold.png
-Dun Banner Medic,Northern Realms,0,0,0,0,0,0,1,5,0,Medic,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/dunbannermedic.png
-Esterad Thyssen,Northern Realms,0,0,0,0,1,0,0,10,1,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/esteradthyssen.png
-Foltest the Siegemaster,Northern Realms,1,0,0,0,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/foltest.png
-Foltest King of Temeria,Northern Realms,1,0,0,0,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/foltest2.png
-Foltest Lord Commander of the North,Northern Realms,1,0,0,0,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/foltest3.png
-Foltest the Steel-Forged,Northern Realms,1,0,0,0,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/foltest4.png
-Geralt of Rivia,Neutral,0,0,0,0,1,0,0,15,1,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/geralt.png
-Impenetrable Fog,Neutral,0,0,0,1,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/impenetrablefog.png
-Impenetrable Fog,Neutral,0,0,0,1,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/impenetrablefog.png
-Impenetrable Fog,Neutral,0,0,0,1,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/impenetrablefog.png
-John Natalis,Northern Realms,0,0,0,0,1,0,0,10,1,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/johnnatalis.png
-Kaedweni Siege Expert,Northern Realms,0,0,0,0,0,0,1,1,0,Morale,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/kaedwenisiege.png
-Kaedweni Siege Expert,Northern Realms,0,0,0,0,0,0,1,1,0,Morale,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/kaedwenisiege2.png
-Kaedweni Siege Expert,Northern Realms,0,0,0,0,0,0,1,1,0,Morale,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/kaedwenisiege3.png
-Keira Metz,Northern Realms,0,0,0,0,0,1,0,5,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/keirametz.png
-Philippa Eilhart,Northern Realms,0,0,0,0,0,1,0,10,1,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/philippaeilhart.png
-Poor Fucking Infantry,Northern Realms,0,0,0,0,1,0,0,1,0,Bond,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/poorinfantry.png
-Poor Fucking Infantry,Northern Realms,0,0,0,0,1,0,0,1,0,Bond,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/poorinfantry.png
-Poor Fucking Infantry,Northern Realms,0,0,0,0,1,0,0,1,0,Bond,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/poorinfantry.png
-Prince Stennis,Northern Realms,0,0,0,0,1,0,0,5,0,Spy,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/princestennis.png
-Redanian Foot Soldier,Northern Realms,0,0,0,0,1,0,0,1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/redanianfootsoldier.png
-Redanian Foot Soldier,Northern Realms,0,0,0,0,1,0,0,1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/redanianfootsoldier2.png
-Sabrina Glevissig,Northern Realms,0,0,0,0,0,1,0,4,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/sabrinaglessvig.png
-Scorch,Neutral,0,0,0,1,0,0,0,-1,0,Scorch,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/scorch.png
-Scorch,Neutral,0,0,0,1,0,0,0,-1,0,Scorch,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/scorch.png
-Scorch,Neutral,0,0,0,1,0,0,0,-1,0,Scorch,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/scorch.png
-Sheldon Skaggs,Northern Realms,0,0,0,0,0,1,0,4,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/sheldonskaggs.png
-Siege Tower,Northern Realms,0,0,0,0,0,0,1,6,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/siegetower.png
-Siegfried of Denesle,Northern Realms,0,0,0,0,1,0,0,5,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/siegfried.png
-Sigismund Dijkstra,Northern Realms,0,0,0,0,1,0,0,4,0,Spy,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/dijkstra.png
-Sile de Tansarville,Northern Realms,0,0,0,0,0,1,0,5,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/siledetansarville.png
-Thaler,Northern Realms,0,0,0,0,0,0,1,1,0,Spy,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/thaler.png
-Torrential Rain,Neutral,0,0,0,1,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/torrentialrain.png
-Torrential Rain,Neutral,0,0,0,1,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/torrentialrain.png
-Torrential Rain,Neutral,0,0,0,1,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/torrentialrain.png
-Trebuchet,Northern Realms,0,0,0,0,0,0,1,6,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/trebuchet.png
-Trebuchet,Northern Realms,0,0,0,0,0,0,1,6,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/trebuchet2.png
-Triss Merigold,Neutral,0,0,0,0,1,0,0,7,1,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/triss.png
-Vernon Roche,Northern Realms,0,0,0,0,1,0,0,10,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/vernonroche.png
-Ves,Northern Realms,0,0,0,0,1,0,0,5,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/ves.png
-Vesemir,Neutral,0,0,0,0,1,0,0,6,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/vesemir.png
-Villentretenmerth,Neutral,0,0,0,0,0,0,0,7,0,Scorch,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/villentretenmerth.png
-Yarpen Zigrin,Northern Relams,0,0,0,0,1,0,0,2,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/yarpenzigrin.png
-Yennefer of Vengerberg,Neutral,0,0,0,0,0,1,0,7,1,Medic,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/yen.png
-Zoltan Chivay,Neutral,0,0,0,0,1,0,0,5,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/zoltan.png
+name,faction,leader,horn,decoy,weather,melee,ranged,siege,strength,hero,ability,abilityDescription,image,audio
+Avallac'h,Neutral,0,0,0,0,1,0,0,0,1,Spy,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/avallach.png,
+Ballista,Northern Realms,0,0,0,0,0,0,1,6,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/ballista.png,
+Ballista,Northern Realms,0,0,0,0,0,0,1,6,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/ballista2.png,
+Biting Frost,Neutral,0,0,0,1,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/bitingfrost.png,
+Biting Frost,Neutral,0,0,0,1,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/bitingfrost.png,
+Biting Frost,Neutral,0,0,0,1,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/bitingfrost.png,
+Blue Stripes Commando,Northern Realms,0,0,0,0,1,0,0,4,0,Bond,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/bluestripescommando.png,
+Blue Stripes Commando,Northern Realms,0,0,0,0,1,0,0,4,0,Bond,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/bluestripescommando.png,
+Blue Stripes Commando,Northern Realms,0,0,0,0,1,0,0,4,0,Bond,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/bluestripescommando.png,
+Catapult,Northern Realms,0,0,0,0,0,0,1,8,0,Bond,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/catapult.png,
+Catapult,Northern Realms,0,0,0,0,0,0,1,8,0,Bond,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/catapult.png,
+Crinfrid Reavers Dragon Hunter,Northern Realms,0,0,0,0,0,1,0,5,0,Bond,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/crinfridreavers.png,
+Crinfrid Reavers Dragon Hunter,Northern Realms,0,0,0,0,0,1,0,5,0,Bond,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/crinfridreavers.png,
+Crinfrid Reavers Dragon Hunter,Northern Realms,0,0,0,0,0,1,0,5,0,Bond,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/crinfridreavers.png,
+Cirilla Fiona Elen Rianno,Neutral,0,0,0,0,1,0,0,15,1,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/ciri.png,./audio/ciri.mp3
+Clear Weather,Neutral,0,0,0,1,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/clearweather.png,
+Clear Weather,Neutral,0,0,0,1,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/clearweather.png,
+Clear Weather,Neutral,0,0,0,1,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/clearweather.png,
+Commander's Horn,Neutral,0,1,0,0,0,0,0,-1,0,Horn,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/commanders.png,
+Commander's Horn,Neutral,0,1,0,0,0,0,0,-1,0,Horn,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/commanders.png,
+Commander's Horn,Neutral,0,1,0,0,0,0,0,-1,0,Horn,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/commanders.png,
+Dandelion,Neutral,0,0,0,0,1,0,0,2,0,Horn,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/dandelion.png,
+Decoy,Neutral,0,0,1,0,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/decoy.png,
+Decoy,Neutral,0,0,1,0,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/decoy.png,
+Decoy,Neutral,0,0,1,0,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/decoy.png,
+Dethmold,Northern Realms,0,0,0,0,0,1,0,6,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/dethmold.png,
+Dun Banner Medic,Northern Realms,0,0,0,0,0,0,1,5,0,Medic,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/dunbannermedic.png,
+Esterad Thyssen,Northern Realms,0,0,0,0,1,0,0,10,1,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/esteradthyssen.png,
+Foltest the Siegemaster,Northern Realms,1,0,0,0,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/foltest.png,
+Foltest King of Temeria,Northern Realms,1,0,0,0,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/foltest2.png,
+Foltest Lord Commander of the North,Northern Realms,1,0,0,0,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/foltest3.png,
+Foltest the Steel-Forged,Northern Realms,1,0,0,0,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/foltest4.png,
+Geralt of Rivia,Neutral,0,0,0,0,1,0,0,15,1,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/geralt.png,
+Impenetrable Fog,Neutral,0,0,0,1,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/impenetrablefog.png,
+Impenetrable Fog,Neutral,0,0,0,1,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/impenetrablefog.png,
+Impenetrable Fog,Neutral,0,0,0,1,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/impenetrablefog.png,
+John Natalis,Northern Realms,0,0,0,0,1,0,0,10,1,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/johnnatalis.png,
+Kaedweni Siege Expert,Northern Realms,0,0,0,0,0,0,1,1,0,Morale,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/kaedwenisiege.png,
+Kaedweni Siege Expert,Northern Realms,0,0,0,0,0,0,1,1,0,Morale,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/kaedwenisiege2.png,
+Kaedweni Siege Expert,Northern Realms,0,0,0,0,0,0,1,1,0,Morale,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/kaedwenisiege3.png,
+Keira Metz,Northern Realms,0,0,0,0,0,1,0,5,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/keirametz.png,
+Philippa Eilhart,Northern Realms,0,0,0,0,0,1,0,10,1,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/philippaeilhart.png,
+Poor Fucking Infantry,Northern Realms,0,0,0,0,1,0,0,1,0,Bond,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/poorinfantry.png,
+Poor Fucking Infantry,Northern Realms,0,0,0,0,1,0,0,1,0,Bond,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/poorinfantry.png,
+Poor Fucking Infantry,Northern Realms,0,0,0,0,1,0,0,1,0,Bond,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/poorinfantry.png,
+Prince Stennis,Northern Realms,0,0,0,0,1,0,0,5,0,Spy,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/princestennis.png,
+Redanian Foot Soldier,Northern Realms,0,0,0,0,1,0,0,1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/redanianfootsoldier.png,
+Redanian Foot Soldier,Northern Realms,0,0,0,0,1,0,0,1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/redanianfootsoldier2.png,
+Sabrina Glevissig,Northern Realms,0,0,0,0,0,1,0,4,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/sabrinaglessvig.png,
+Scorch,Neutral,0,0,0,1,0,0,0,-1,0,Scorch,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/scorch.png,
+Scorch,Neutral,0,0,0,1,0,0,0,-1,0,Scorch,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/scorch.png,
+Scorch,Neutral,0,0,0,1,0,0,0,-1,0,Scorch,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/scorch.png,
+Sheldon Skaggs,Northern Realms,0,0,0,0,0,1,0,4,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/sheldonskaggs.png,
+Siege Tower,Northern Realms,0,0,0,0,0,0,1,6,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/siegetower.png,
+Siegfried of Denesle,Northern Realms,0,0,0,0,1,0,0,5,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/siegfried.png,
+Sigismund Dijkstra,Northern Realms,0,0,0,0,1,0,0,4,0,Spy,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/dijkstra.png,
+Sile de Tansarville,Northern Realms,0,0,0,0,0,1,0,5,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/siledetansarville.png,
+Thaler,Northern Realms,0,0,0,0,0,0,1,1,0,Spy,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/thaler.png,
+Torrential Rain,Neutral,0,0,0,1,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/torrentialrain.png,
+Torrential Rain,Neutral,0,0,0,1,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/torrentialrain.png,
+Torrential Rain,Neutral,0,0,0,1,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/torrentialrain.png,
+Trebuchet,Northern Realms,0,0,0,0,0,0,1,6,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/trebuchet.png,
+Trebuchet,Northern Realms,0,0,0,0,0,0,1,6,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/trebuchet2.png,
+Triss Merigold,Neutral,0,0,0,0,1,0,0,7,1,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/triss.png,
+Vernon Roche,Northern Realms,0,0,0,0,1,0,0,10,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/vernonroche.png,
+Ves,Northern Realms,0,0,0,0,1,0,0,5,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/ves.png,
+Vesemir,Neutral,0,0,0,0,1,0,0,6,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/vesemir.png,
+Villentretenmerth,Neutral,0,0,0,0,0,0,0,7,0,Scorch,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/villentretenmerth.png,
+Yarpen Zigrin,Northern Relams,0,0,0,0,1,0,0,2,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/yarpenzigrin.png,
+Yennefer of Vengerberg,Neutral,0,0,0,0,0,1,0,7,1,Medic,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/yen.png,
+Zoltan Chivay,Neutral,0,0,0,0,1,0,0,5,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/zoltan.png,
