@@ -1,5 +1,5 @@
 name,faction,leader,horn,decoy,weather,melee,ranged,siege,strength,hero,ability,abilityDescription,image,audio
-Avallac'h,Neutral,0,0,0,0,1,0,0,0,1,Spy,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/avallach.png,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/audio/audio/avallach.mp3
+Avallac'h,Neutral,0,0,0,0,1,0,0,0,1,Spy,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/avallach.png,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/audio/avallach.mp3
 Ballista,Northern Realms,0,0,0,0,0,0,1,6,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/ballista.png,
 Ballista,Northern Realms,0,0,0,0,0,0,1,6,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/ballista2.png,
 Biting Frost,Neutral,0,0,0,1,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/bitingfrost.png,
@@ -13,7 +13,7 @@ Catapult,Northern Realms,0,0,0,0,0,0,1,8,0,Bond,abilityDescription,https://raw.g
 Crinfrid Reavers Dragon Hunter,Northern Realms,0,0,0,0,0,1,0,5,0,Bond,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/crinfridreavers.png,
 Crinfrid Reavers Dragon Hunter,Northern Realms,0,0,0,0,0,1,0,5,0,Bond,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/crinfridreavers.png,
 Crinfrid Reavers Dragon Hunter,Northern Realms,0,0,0,0,0,1,0,5,0,Bond,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/crinfridreavers.png,
-Cirilla Fiona Elen Rianno,Neutral,0,0,0,0,1,0,0,15,1,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/ciri.png,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/audio/audio/ciri.mp3
+Cirilla Fiona Elen Rianno,Neutral,0,0,0,0,1,0,0,15,1,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/ciri.png,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/audio/ciri.mp3
 Clear Weather,Neutral,0,0,0,1,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/clearweather.png,
 Clear Weather,Neutral,0,0,0,1,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/clearweather.png,
 Clear Weather,Neutral,0,0,0,1,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/clearweather.png,
@@ -31,7 +31,7 @@ Foltest the Siegemaster,Northern Realms,1,0,0,0,0,0,0,-1,0,None,abilityDescripti
 Foltest King of Temeria,Northern Realms,1,0,0,0,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/foltest2.png,
 Foltest Lord Commander of the North,Northern Realms,1,0,0,0,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/foltest3.png,
 Foltest the Steel-Forged,Northern Realms,1,0,0,0,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/foltest4.png,
-Geralt of Rivia,Neutral,0,0,0,0,1,0,0,15,1,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/geralt.png,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/audio/audio/geralt.mp3
+Geralt of Rivia,Neutral,0,0,0,0,1,0,0,15,1,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/geralt.png,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/audio/geralt.mp3
 Impenetrable Fog,Neutral,0,0,0,1,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/impenetrablefog.png,
 Impenetrable Fog,Neutral,0,0,0,1,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/impenetrablefog.png,
 Impenetrable Fog,Neutral,0,0,0,1,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/impenetrablefog.png,
@@ -62,11 +62,11 @@ Torrential Rain,Neutral,0,0,0,1,0,0,0,-1,0,None,abilityDescription,https://raw.g
 Torrential Rain,Neutral,0,0,0,1,0,0,0,-1,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/torrentialrain.png,
 Trebuchet,Northern Realms,0,0,0,0,0,0,1,6,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/trebuchet.png,
 Trebuchet,Northern Realms,0,0,0,0,0,0,1,6,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/trebuchet2.png,
-Triss Merigold,Neutral,0,0,0,0,1,0,0,7,1,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/triss.png,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/audio/audio/triss.mp3
+Triss Merigold,Neutral,0,0,0,0,1,0,0,7,1,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/triss.png,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/audio/triss.mp3
 Vernon Roche,Northern Realms,0,0,0,0,1,0,0,10,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/vernonroche.png,
 Ves,Northern Realms,0,0,0,0,1,0,0,5,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/ves.png,
-Vesemir,Neutral,0,0,0,0,1,0,0,6,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/vesemir.png,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/audio/audio/vesemir.mp3
+Vesemir,Neutral,0,0,0,0,1,0,0,6,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/vesemir.png,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/audio/vesemir.mp3
 Villentretenmerth,Neutral,0,0,0,0,0,0,0,7,0,Scorch,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/villentretenmerth.png,
 Yarpen Zigrin,Northern Relams,0,0,0,0,1,0,0,2,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/yarpenzigrin.png,
-Yennefer of Vengerberg,Neutral,0,0,0,0,0,1,0,7,1,Medic,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/yen.png,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/audio/audio/yennefer.mp3
-Zoltan Chivay,Neutral,0,0,0,0,1,0,0,5,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/zoltan.png,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/audio/audio/zoltan.mp3
+Yennefer of Vengerberg,Neutral,0,0,0,0,0,1,0,7,1,Medic,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/yen.png,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/audio/yennefer.mp3
+Zoltan Chivay,Neutral,0,0,0,0,1,0,0,5,0,None,abilityDescription,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/textures/zoltan.png,https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/audio/zoltan.mp3
