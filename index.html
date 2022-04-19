@@ -15,7 +15,18 @@
         }
     </style>
     <!--  Three.js CDN  -->
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "./three.js-master/build/three.module.js",
+                "GLTFLoader": "./three.js-master/examples/jsm/loaders/GLTFLoader.js"
+            }
+        }
+    </script>
+
     <script src=></script>
+    <script type="module" src="./three.js-master/examples/jsm/loaders/GLTFLoader.js"></script>
     <script src="./PapaParse-5.0.2/papaparse.js"></script>
 </head>
 
@@ -56,6 +67,9 @@
         });
 
         import * as THREE from './three.js-master/build/three.module.js';
+        import { GLTFLoader } from './three.js-master/examples/jsm/loaders/GLTFLoader.js';
+        
+       
 
         //
         /** @namespace */
@@ -84,6 +98,8 @@
         let selected = 0;
 
         let melee = [];
+        let ranged = [];
+        let siege = []
 
         init();
         animate();
@@ -132,17 +148,28 @@
 
             let domEvents = new THREEx.DomEvents(camera, renderer.domElement)
 
+            // MELEE ROW
             const rowShape = new THREE.Shape();
-            roundedRect(rowShape, 0, 0, 800, 200, 10);
+            roundedRect(rowShape, 220, 260, 320, 90, 10);
             extrudeSettings = { depth: 4, bevelEnabled: false, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
 
             texture = loader.load("textures/wood.jpg");
             texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
             texture.repeat.set(0.0012, 0.005);
-            addShape(rowShape, extrudeSettings, 0x008000, texture, -300, 0, 0, 0, 0, 0, 1);
+            addShape(rowShape, extrudeSettings, 0x008000, null, -300, 0, 0, 0, 0, 0, 1);
+
+            console.log(mesh)
+            mesh.material.color = {"r": 232/255, "g": 218/255, "b": 125/255};
+            mesh.material.opacity = 0.0;
+
+            domEvents.addEventListener(mesh, "mouseover", function (event) {
+                mesh.material.opacity = 0.25;
+            });
+
 
             domEvents.addEventListener(mesh, "click", function (event) {
-                if (selected && !melee.includes(selected)) {
+                if (selected && !melee.includes(selected) && selected["melee"]) {
+                    selected["mesh"].scale.set(0.5, 0.5, 0.5)
                     melee.push(selected);
                     melee.sort(function (a, b) {
                         return -(b["strength"] - a["strength"]);
@@ -155,11 +182,77 @@
                         start = -280;
                     for (place = 0; place < melee.length; place++) {
                         melee[place]["mesh"].position.z = place * 2 - 60;
-                        melee[place]["mesh"].position.y = 10;
+                        melee[place]["mesh"].position.y = 250;
                         if (melee.length < 8)
                             melee[place]["mesh"].position.x = start + place * (100);
                         else
                             melee[place]["mesh"].position.x = start + place * (700 / melee.length);
+                    }
+                    selected['audio'].play();
+                    selected['audio'].currentTime = 0;
+                    selected = 0;
+                }
+            });
+
+            //RANGED ROW
+            roundedRect(rowShape, 220, 162, 320, 90, 10);
+            addShape(rowShape, extrudeSettings, 0x008000, null, -300, 0, 0, 0, 0, 0, 1);
+            mesh.material.color = {"r": 232/255, "g": 218/255, "b": 125/255};
+            mesh.material.opacity = 0.0;
+
+            domEvents.addEventListener(mesh, "click", function (event) {
+                if (selected && !ranged.includes(selected) && selected["ranged"]) {
+                    selected["mesh"].scale.set(0.5, 0.5, 0.5)
+                    ranged.push(selected);
+                    ranged.sort(function (a, b) {
+                        return -(b["strength"] - a["strength"]);
+                    })
+                    let place = 0;
+                    let start = -50 * ranged.length + 90;
+                    if (ranged.length >= 8)
+                        start = -270;
+                    if (ranged.length == 10)
+                        start = -280;
+                    for (place = 0; place < ranged.length; place++) {
+                        ranged[place]["mesh"].position.z = place * 2 - 60;
+                        ranged[place]["mesh"].position.y = 150;
+                        if (ranged.length < 8)
+                            ranged[place]["mesh"].position.x = start + place * (100);
+                        else
+                            ranged[place]["mesh"].position.x = start + place * (700 / ranged.length);
+                    }
+                    selected['audio'].play();
+                    selected['audio'].currentTime = 0;
+                    selected = 0;
+                }
+            });
+
+            //SEIGE ROW
+            roundedRect(rowShape, 220, 65, 320, 90, 10);
+            addShape(rowShape, extrudeSettings, 0x008000, null, -300, 0, 0, 0, 0, 0, 1);
+            mesh.material.color = {"r": 232/255, "g": 218/255, "b": 125/255};
+            mesh.material.opacity = 0.0;
+
+            domEvents.addEventListener(mesh, "click", function (event) {
+                if (selected && !siege.includes(selected) && selected["siege"]) {
+                    selected["mesh"].scale.set(0.5, 0.5, 0.5)
+                    siege.push(selected);
+                    siege.sort(function (a, b) {
+                        return -(b["strength"] - a["strength"]);
+                    })
+                    let place = 0;
+                    let start = -50 * siege.length + 90;
+                    if (siege.length >= 8)
+                        start = -270;
+                    if (siege.length == 10)
+                        start = -280;
+                    for (place = 0; place < siege.length; place++) {
+                        siege[place]["mesh"].position.z = place * 2 - 60;
+                        siege[place]["mesh"].position.y = 55;
+                        if (siege.length < 8)
+                            siege[place]["mesh"].position.x = start + place * (100);
+                        else
+                            siege[place]["mesh"].position.x = start + place * (700 / siege.length);
                     }
                     selected['audio'].play();
                     selected['audio'].currentTime = 0;
@@ -199,28 +292,28 @@
 
                     domEvents.addEventListener(meshes[currentMesh], "mouseover", function (event) {
                         //ADD EVENT
-                        if (!selected && !melee.includes(d)) {
+                        if (!selected && !melee.includes(d) && !ranged.includes(d) && !siege.includes(d)) {
                             d["mesh"].position.z += 10;
                             d["mesh"].position.y += 20;
                         }
                     }, false);
                     domEvents.addEventListener(meshes[currentMesh], "mouseout", function (event) {
                         //ADD EVENT
-                        if (!selected && !melee.includes(d)) {
+                        if (!selected && !melee.includes(d) && !ranged.includes(d) && !siege.includes(d)) {
                             d["mesh"].position.z -= 10;
                             d["mesh"].position.y -= 20;
                         }
                     }, false);
                     domEvents.addEventListener(meshes[currentMesh], "click", function (event) {
-                        if (!selected && !melee.includes(d)) {
+                        if (!selected && !melee.includes(d) && !ranged.includes(d) && !siege.includes(d)) {
                             selected = d;
                             setTimeout(function() {
-                                console.log('hi');
-                                var image = new Image();
-                                image.src = './textures/ballista.png';
-                                image.crossOrigin = 'anonymous';
-                                selected["mesh"].material.map.source.data = image;
-                                selected["mesh"].material.map.needsUpdate = true;
+                                // console.log('hi');
+                                // var image = new Image();
+                                // image.src = './textures/ballista.png';
+                                // image.crossOrigin = 'anonymous';
+                                // selected["mesh"].material.map.source.data = image;
+                                // selected["mesh"].material.map.needsUpdate = true;
                             }, 1);
                         } else if (selected == d) {
                             selected = 0;
@@ -239,9 +332,25 @@
                     z += 2;
                 }
             }
-            //
+            
+            const model_loader = new GLTFLoader();
+            model_loader.load('./models/half_gwent_board.glb', function(gltf) {
+                var model = gltf.scene;
+                console.log(model)
+                model.position.set(-200.0, 0.0, -100.0)
+                model.rotation.set(1.55, 0.0, 0.0);
+                model.scale.set(0.95, 0.95, 0.95);
+                scene.add(model);}, 
+                
+                undefined, 
+                
+                function ( error ) {
+                    console.error( error );
+            });
 
         }
+
+        
 
         function roundedRect(ctx, x, y, width, height, radius) {
 
@@ -259,7 +368,7 @@
 
         function addShape(shape, extrudeSettings, color, texture, x, y, z, rx, ry, rz, s) {
 
-            console.log(texture);
+            // console.log(texture);
             const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
 
             mesh = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial({ map: texture, transparent: true }));
