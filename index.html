@@ -116,7 +116,7 @@
             camera.position.set(0, 150, 500);
             scene.add(camera);
 
-            const light = new THREE.PointLight(0xffffff, 1);
+            const light = new THREE.PointLight(0xffffff, 1.1);
             camera.add(light);
 
             group = new THREE.Group();
@@ -153,9 +153,6 @@
             roundedRect(rowShape, 220, 260, 320, 90, 10);
             extrudeSettings = { depth: 4, bevelEnabled: false, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
 
-            texture = loader.load("textures/wood.jpg");
-            texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-            texture.repeat.set(0.0012, 0.005);
             addShape(rowShape, extrudeSettings, 0x008000, null, -300, 0, 0, 0, 0, 0, 1);
 
             console.log(mesh)
@@ -163,7 +160,7 @@
             mesh.material.opacity = 0.0;
 
             domEvents.addEventListener(mesh, "mouseover", function (event) {
-                mesh.material.opacity = 0.25;
+                // mesh.material.opacity = 0.25;
             });
 
 
@@ -333,13 +330,18 @@
                 }
             }
             
+
+            texture = loader.load("textures/wood.jpg");
+            texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+            texture.repeat.set(0.0012, 0.005);
+
             const model_loader = new GLTFLoader();
-            model_loader.load('./models/half_gwent_board.glb', function(gltf) {
+            model_loader.load('./models/new_gwent_board.glb', function(gltf) {
                 var model = gltf.scene;
-                console.log(model)
                 model.position.set(-200.0, 0.0, -100.0)
                 model.rotation.set(1.55, 0.0, 0.0);
                 model.scale.set(0.95, 0.95, 0.95);
+                console.log(model)
                 scene.add(model);}, 
                 
                 undefined, 
