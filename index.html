@@ -61,8 +61,10 @@
             card['siege'] = parseInt(card['siege']);
             card['strength'] = parseInt(card['strength']);
             card['hero'] = parseInt(card['hero']);
-            snd = new Audio(card['audio'])
-            card['audio'] = snd;
+            if (parseInt(card['audio']) != 0) {
+                snd = new Audio(card['audio'])
+                card['audio'] = snd;
+            }
 
         });
 
@@ -101,10 +103,65 @@
         let ranged = [];
         let siege = []
 
+        let extrudeSettings;
+        let texture;
+
+        const rowShape = new THREE.Shape();
+
+        let rowOpacity = 0.0;
+        let rowWidth = 280;
+        let rowHeight = 80;
+        let rowSpacing = 85;
+        let rowX = 230;
+        let rowY = 240;
+        let maxCards = 6;
+
+        let meleeMesh;
+        let rangedMesh;
+        let siegeMesh;
+
+        //let rowZ;
+
+        let cardWidth = 90;
+        let cardHeight = 120;
+        let cardTextureX = 0.011;
+        let cardTextureY = 0.00815;
+        let x = 0;
+        let y = -160;
+        let z = -60;
+        let meleeCardY = 255;
+        let cardVertSpacing = 87;
+
+        let meshes = [];
+        let topMeshes = [];
+
+        let handCards = [];
+        let handCardX = 0;
+
+        let meleeCards = [];
+        let rangedCards = [];
+        let siegeCards = [];
+
+        let infoView = 0;
+        let infoWidth = 115;
+        let infoHeight = 200;
+        let infoTextureX = 0.0085;
+        let infoTextureY = 0.005;
+        let infoMesh;
+        let fadeWidth = 1920;
+        let fadeHeight = 1080;
+        let fadeX = -960;
+        let fadeY = -540;
+        let fadeOpacity = 0.5;
+        let fadeMesh;
+
+        const loader = new THREE.TextureLoader();
+
         init();
         animate();
 
         function init() {
+            //variable declarattions
 
             container = document.createElement('div');
             document.body.appendChild(container);
@@ -123,167 +180,179 @@
             group.position.y = 50;
             scene.add(group);
 
-            let extrudeSettings;
-
-            const loader = new THREE.TextureLoader();
             loader.crossOrigin = "anonymous";
 
             const testShape = new THREE.Shape();
             roundedRect(testShape, 0, 0, 135, 220, 10);
             extrudeSettings = { depth: 0, bevelEnabled: false, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
 
-            let texture;
-
+            /*
+                --Spark Test:
             texture = loader.load("textures/sparkimage.png");
             texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
             texture.repeat.set(0.0062, 0.004);
             addShape(testShape, extrudeSettings, 0x008000, texture, -300, 0, 100, 0, 0, 0, 1);
+            */
 
+            //Renderer
             renderer = new THREE.WebGLRenderer({ antialias: true });
             renderer.setPixelRatio(window.devicePixelRatio);
             renderer.setSize(window.innerWidth, window.innerHeight);
+
+            //ThreeX domevents
             container.appendChild(renderer.domElement);
-
             container.style.touchAction = 'none';
-
             let domEvents = new THREEx.DomEvents(camera, renderer.domElement)
 
             // MELEE ROW
-            const rowShape = new THREE.Shape();
-            roundedRect(rowShape, 220, 260, 320, 90, 10);
+            roundedRect(rowShape, rowX, rowY, rowWidth, rowHeight, 10);
             extrudeSettings = { depth: 4, bevelEnabled: false, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
+            addShape(rowShape, extrudeSettings, 0x008000, null, -300, 0, 10, 0, 0, 0, 1);
 
-            texture = loader.load("textures/wood.jpg");
-            texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-            texture.repeat.set(0.0012, 0.005);
-            addShape(rowShape, extrudeSettings, 0x008000, null, -300, 0, 0, 0, 0, 0, 1);
+            // Board Texture
+            //texture = loader.load("textures/wood.jpg");
+            //texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+            //texture.repeat.set(0.0012, 0.005);
 
-            console.log(mesh)
+
             mesh.material.color = { "r": 232 / 255, "g": 218 / 255, "b": 125 / 255 };
-            mesh.material.opacity = 0.0;
+            mesh.material.opacity = rowOpacity;
+            meleeMesh = mesh;
 
-            domEvents.addEventListener(mesh, "mouseover", function (event) {
-                mesh.material.opacity = 0.25;
-            });
+            //domEvents.addEventListener(mesh, "mouseover", function (event) {
+            //    mesh.material.opacity = 0.25;
+            //});
+
 
 
             domEvents.addEventListener(mesh, "click", function (event) {
                 if (selected && !melee.includes(selected) && selected["melee"]) {
+                    handCards.splice(handCards.indexOf(selected), 1);
+
+                    meleeMesh.material.opacity = rowOpacity;
+                    rangedMesh.material.opacity = rowOpacity;
+                    siegeMesh.material.opacity = rowOpacity;
+
                     selected["mesh"].scale.set(0.5, 0.5, 0.5)
                     melee.push(selected);
                     melee.sort(function (a, b) {
                         return -(b["strength"] - a["strength"]);
                     })
-                    let place = 0;
-                    let start = -50 * melee.length + 90;
-                    if (melee.length >= 8)
-                        start = -270;
-                    if (melee.length == 10)
-                        start = -280;
-                    for (place = 0; place < melee.length; place++) {
-                        melee[place]["mesh"].position.z = place * 2 - 60;
-                        melee[place]["mesh"].position.y = 250;
-                        if (melee.length < 8)
-                            melee[place]["mesh"].position.x = start + place * (100);
-                        else
-                            melee[place]["mesh"].position.x = start + place * (700 / melee.length);
-                    }
-                    selected['audio'].play();
-                    selected['audio'].currentTime = 0;
+                    placesInRow(melee, meleeCardY);
+
                     selected = 0;
+
+                    placeHand();
                 }
             });
 
             //RANGED ROW
-            roundedRect(rowShape, 220, 162, 320, 90, 10);
-            addShape(rowShape, extrudeSettings, 0x008000, null, -300, 0, 0, 0, 0, 0, 1);
+            addShape(rowShape, extrudeSettings, 0x008000, null, -300, - rowSpacing, 10, 0, 0, 0, 1);
             mesh.material.color = { "r": 232 / 255, "g": 218 / 255, "b": 125 / 255 };
-            mesh.material.opacity = 0.0;
+            mesh.material.opacity = rowOpacity;
+            rangedMesh = mesh;
 
             domEvents.addEventListener(mesh, "click", function (event) {
                 if (selected && !ranged.includes(selected) && selected["ranged"]) {
+                    handCards.splice(handCards.indexOf(selected), 1);
+
+                    meleeMesh.material.opacity = rowOpacity;
+                    rangedMesh.material.opacity = rowOpacity;
+                    siegeMesh.material.opacity = rowOpacity;
+
                     selected["mesh"].scale.set(0.5, 0.5, 0.5)
                     ranged.push(selected);
                     ranged.sort(function (a, b) {
                         return -(b["strength"] - a["strength"]);
                     })
-                    let place = 0;
-                    let start = -50 * ranged.length + 90;
-                    if (ranged.length >= 8)
-                        start = -270;
-                    if (ranged.length == 10)
-                        start = -280;
-                    for (place = 0; place < ranged.length; place++) {
-                        ranged[place]["mesh"].position.z = place * 2 - 60;
-                        ranged[place]["mesh"].position.y = 150;
-                        if (ranged.length < 8)
-                            ranged[place]["mesh"].position.x = start + place * (100);
-                        else
-                            ranged[place]["mesh"].position.x = start + place * (700 / ranged.length);
-                    }
-                    selected['audio'].play();
-                    selected['audio'].currentTime = 0;
+                    placesInRow(ranged, meleeCardY - cardVertSpacing);
+
                     selected = 0;
+
+                    placeHand();
                 }
             });
 
             //SEIGE ROW
-            roundedRect(rowShape, 220, 65, 320, 90, 10);
-            addShape(rowShape, extrudeSettings, 0x008000, null, -300, 0, 0, 0, 0, 0, 1);
+            addShape(rowShape, extrudeSettings, 0x008000, null, -300, - 2 * rowSpacing, 10, 0, 0, 0, 1);
             mesh.material.color = { "r": 232 / 255, "g": 218 / 255, "b": 125 / 255 };
-            mesh.material.opacity = 0.0;
+            mesh.material.opacity = rowOpacity;
+            siegeMesh = mesh;
 
             domEvents.addEventListener(mesh, "click", function (event) {
                 if (selected && !siege.includes(selected) && selected["siege"]) {
+                    handCards.splice(handCards.indexOf(selected), 1);
+
+                    meleeMesh.material.opacity = rowOpacity;
+                    rangedMesh.material.opacity = rowOpacity;
+                    siegeMesh.material.opacity = rowOpacity;
+
                     selected["mesh"].scale.set(0.5, 0.5, 0.5)
                     siege.push(selected);
                     siege.sort(function (a, b) {
                         return -(b["strength"] - a["strength"]);
                     })
-                    let place = 0;
-                    let start = -50 * siege.length + 90;
-                    if (siege.length >= 8)
-                        start = -270;
-                    if (siege.length == 10)
-                        start = -280;
-                    for (place = 0; place < siege.length; place++) {
-                        siege[place]["mesh"].position.z = place * 2 - 60;
-                        siege[place]["mesh"].position.y = 55;
-                        if (siege.length < 8)
-                            siege[place]["mesh"].position.x = start + place * (100);
-                        else
-                            siege[place]["mesh"].position.x = start + place * (700 / siege.length);
-                    }
-                    selected['audio'].play();
-                    selected['audio'].currentTime = 0;
+                    placesInRow(siege, meleeCardY - 2 * cardVertSpacing);
+
                     selected = 0;
+
+                    placeHand();
                 }
             });
 
+            function placesInRow(cards, cardY) {
+                let positions = [];
+                let placedCardWidth = cardWidth / 2;
+
+                let placedCardX = 50;
+                if (cards.length % 2 == 0)
+                    placedCardX += placedCardWidth / 2;
+
+                for (let i = 0; i < cards.length; i++) {
+                    if (cards.length <= maxCards) {
+                        if (i % 2 != 0)
+                            positions[i] = placedCardX - (Math.floor(i / 2) + 1) * placedCardWidth;
+                        else
+                            positions[i] = placedCardX + (i / 2) * placedCardWidth;
+                    }
+                    else {
+                        if (i % 2 != 0)
+                            positions[i] = placedCardX - (Math.floor(i / 2) + 1) * (placedCardWidth - (cards.length - maxCards) / maxCards * placedCardWidth);
+                        else
+                            positions[i] = placedCardX + (i / 2) * (placedCardWidth - (cards.length - maxCards) / maxCards * placedCardWidth);
+                    }
+                }
+                console.log(positions);
+                positions.sort(function (a, b) {
+                    return (a - b);
+                });
+                console.log(positions);
+
+                for (let i = 0; i < cards.length; i++) {
+                    cards[i]["mesh"].position.x = positions[i];
+                    cards[i]["mesh"].position.y = cardY;
+                    cards[i]["mesh"].position.z = i * 2 - 80;
+                }
+            }
+
             ///////
-            let x = 0;
-            let y = -160;
-            let z = 10;
-
-            let meshes = [];
-            let topMeshes = [];
-
+            //Card creation
             cardData.forEach(testDisplay);
             function testDisplay(d) {
-                if (!d["leader"] && d["strength"] > 5
+                if (!d["leader"] && d["strength"] > 6
                     && x / 1000 < 1) {
                     const cardShape = new THREE.Shape();
-                    roundedRect(cardShape, 0, 0, 115, 200, 10);
+                    roundedRect(cardShape, 0, 0, cardWidth, cardHeight, 10);
                     extrudeSettings = { depth: 4, bevelEnabled: false, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
 
-                    texture = loader.load(d["image"]);
+                    texture = loader.load(d["smallImage"]);
 
                     // it's necessary to apply these settings in order to correctly display the texture on a shape geometry
 
                     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-                    texture.repeat.set(0.0085, 0.005);
+                    texture.repeat.set(cardTextureX, cardTextureY);
 
-                    addShape(cardShape, extrudeSettings, 0x008000, texture, x % 1000 - 500, y, z, 0, 0, 0, .9);
+                    addShape(cardShape, extrudeSettings, 0x008000, texture, 0, y, 0, 0, 0, 0, .9);
 
                     meshes.push(mesh);
                     let currentMesh = meshes.length - 1;
@@ -307,24 +376,26 @@
                     domEvents.addEventListener(meshes[currentMesh], "click", function (event) {
                         if (!selected && !melee.includes(d) && !ranged.includes(d) && !siege.includes(d)) {
                             selected = d;
-                            setTimeout(function () {
-                                // console.log('hi');
-                                // var image = new Image();
-                                // image.src = './textures/ballista.png';
-                                // image.crossOrigin = 'anonymous';
-                                // selected["mesh"].material.map.source.data = image;
-                                // selected["mesh"].material.map.needsUpdate = true;
-                            }, 1);
+                            if (d["melee"])
+                                meleeMesh.material.opacity = 0.3;
+                            if (d["ranged"])
+                                rangedMesh.material.opacity = 0.3;
+                            if (d["siege"])
+                                siegeMesh.material.opacity = 0.3;
+
                         } else if (selected == d) {
                             selected = 0;
+                            meleeMesh.material.opacity = rowOpacity;
+                            rangedMesh.material.opacity = rowOpacity;
+                            siegeMesh.material.opacity = rowOpacity;
                         }
                     });
+                    handCards[handCards.length] = d;
 
 
                     // it's necessary to apply these settings in order to correctly display the texture on a shape geometry
 
-
-                    x += 100;
+                    x += cardWidth;
                     if (x % 1000 == 0 && x != 0) {
                         y -= 100;
                         z = 0
@@ -332,12 +403,73 @@
                     z += 2;
                 }
             }
+            placeHand();
+
+            function placeHand() {
+                handCards.sort(function (a, b) {
+                    return -(b["strength"] - a["strength"]);
+                })
+                let positions = [];
+                console.log(handCards.length);
+                if (handCards.length % 2 == 0)
+                    handCardX = cardWidth / 2;
+                for (let i = 0; i < handCards.length; i++) {
+                    if (i % 2 != 0)
+                        positions[i] = handCardX - (Math.floor(i / 2) + 1) * cardWidth;
+                    else
+                        positions[i] = handCardX + (i / 2) * cardWidth;
+                }
+                console.log(positions);
+                positions.sort(function (a, b) {
+                    return (a - b);
+                });
+                console.log(positions);
+                let handZ = -140;
+                for (let i = 0; i < handCards.length; i++) {
+                    handCards[i]["mesh"].position.x = positions[i];
+                    handCards[i]["mesh"].position.z = handZ;
+                    handZ += 2;
+                }
+            }
+            function placesInRow(cards, cardY) {
+                let positions = [];
+                let placedCardWidth = cardWidth / 2;
+
+                let placedCardX = 50;
+                if (cards.length % 2 == 0)
+                    placedCardX += placedCardWidth / 2;
+
+                for (let i = 0; i < cards.length; i++) {
+                    if (cards.length <= maxCards) {
+                        if (i % 2 != 0)
+                            positions[i] = placedCardX - (Math.floor(i / 2) + 1) * placedCardWidth;
+                        else
+                            positions[i] = placedCardX + (i / 2) * placedCardWidth;
+                    }
+                    else {
+                        if (i % 2 != 0)
+                            positions[i] = placedCardX - (Math.floor(i / 2) + 1) * (placedCardWidth - (cards.length - maxCards) / maxCards * placedCardWidth);
+                        else
+                            positions[i] = placedCardX + (i / 2) * (placedCardWidth - (cards.length - maxCards) / maxCards * placedCardWidth);
+                    }
+                }
+                positions.sort(function (a, b) {
+                    return (a - b);
+                });
+
+                for (let i = 0; i < cards.length; i++) {
+                    cards[i]["mesh"].position.x = positions[i];
+                    cards[i]["mesh"].position.y = cardY;
+                    cards[i]["mesh"].position.z = i * 2 - 80;
+                }
+            }
+
 
             const model_loader = new GLTFLoader();
-            model_loader.load('./models/half_gwent_board.glb', function (gltf) {
+            model_loader.load('./models/new_gwent_board.glb', function (gltf) {
                 var model = gltf.scene;
                 console.log(model)
-                model.position.set(-200.0, 0.0, -100.0)
+                model.position.set(-200.0, 0.0, -180.0)
                 model.rotation.set(1.55, 0.0, 0.0);
                 model.scale.set(0.95, 0.95, 0.95);
                 scene.add(model);
@@ -391,11 +523,49 @@
 
             group.rotation.y += (targetRotation - group.rotation.y) * 0.05;
             renderer.render(scene, camera);
-            //mesh.visible = vis;
-
         }
 
         renderer.domElement.addEventListener("click", onclick, true);
+
+        document.addEventListener("keypress", function (event) {
+            if (event.keyCode == 99) {
+                if (selected) {
+                    if (infoView) {
+                        infoView = 0;
+                        group.remove(infoMesh);
+                        group.remove(fadeMesh);
+                    }
+                    else {
+                        infoView = 1;
+                        const infoShape = new THREE.Shape();
+                        roundedRect(infoShape, 0, 0, infoWidth, infoHeight, 10);
+                        extrudeSettings = { depth: 4, bevelEnabled: false, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
+
+                        texture = loader.load(selected["image"]);
+
+                        // it's necessary to apply these settings in order to correctly display the texture on a shape geometry
+
+                        texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+                        texture.repeat.set(infoTextureX, infoTextureY);
+
+                        addShape(infoShape, extrudeSettings, 0x008000, texture, -infoWidth / 2 + 10, 0, 200, 0, 0, 0, 1.1);
+                        infoMesh = mesh;
+
+                        const fadeShape = new THREE.Shape();
+                        roundedRect(fadeShape, 0, 0, fadeWidth, fadeHeight, 10);
+                        extrudeSettings = {};
+                        addShape(fadeShape, extrudeSettings, 0xffffff, null, fadeX, fadeY, 100, 0, 0, 0, .9);
+                        mesh.material.opacity = fadeOpacity;
+                        fadeMesh = mesh;
+
+                        if (selected['audio'] != 0) {
+                            selected['audio'].play();
+                            selected['audio'].currentTime = 0;
+                        }
+                    }
+                }
+            }
+        });
 
         /////
         function makeTHREEx() {
