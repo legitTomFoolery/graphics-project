@@ -68,8 +68,8 @@
 
         import * as THREE from './three.js-master/build/three.module.js';
         import { GLTFLoader } from './three.js-master/examples/jsm/loaders/GLTFLoader.js';
-        
-       
+
+
 
         //
         /** @namespace */
@@ -159,7 +159,7 @@
             addShape(rowShape, extrudeSettings, 0x008000, null, -300, 0, 0, 0, 0, 0, 1);
 
             console.log(mesh)
-            mesh.material.color = {"r": 232/255, "g": 218/255, "b": 125/255};
+            mesh.material.color = { "r": 232 / 255, "g": 218 / 255, "b": 125 / 255 };
             mesh.material.opacity = 0.0;
 
             domEvents.addEventListener(mesh, "mouseover", function (event) {
@@ -197,7 +197,7 @@
             //RANGED ROW
             roundedRect(rowShape, 220, 162, 320, 90, 10);
             addShape(rowShape, extrudeSettings, 0x008000, null, -300, 0, 0, 0, 0, 0, 1);
-            mesh.material.color = {"r": 232/255, "g": 218/255, "b": 125/255};
+            mesh.material.color = { "r": 232 / 255, "g": 218 / 255, "b": 125 / 255 };
             mesh.material.opacity = 0.0;
 
             domEvents.addEventListener(mesh, "click", function (event) {
@@ -230,7 +230,7 @@
             //SEIGE ROW
             roundedRect(rowShape, 220, 65, 320, 90, 10);
             addShape(rowShape, extrudeSettings, 0x008000, null, -300, 0, 0, 0, 0, 0, 1);
-            mesh.material.color = {"r": 232/255, "g": 218/255, "b": 125/255};
+            mesh.material.color = { "r": 232 / 255, "g": 218 / 255, "b": 125 / 255 };
             mesh.material.opacity = 0.0;
 
             domEvents.addEventListener(mesh, "click", function (event) {
@@ -307,7 +307,7 @@
                     domEvents.addEventListener(meshes[currentMesh], "click", function (event) {
                         if (!selected && !melee.includes(d) && !ranged.includes(d) && !siege.includes(d)) {
                             selected = d;
-                            setTimeout(function() {
+                            setTimeout(function () {
                                 // console.log('hi');
                                 // var image = new Image();
                                 // image.src = './textures/ballista.png';
@@ -332,25 +332,26 @@
                     z += 2;
                 }
             }
-            
+
             const model_loader = new GLTFLoader();
-            model_loader.load('./models/half_gwent_board.glb', function(gltf) {
+            model_loader.load('./models/half_gwent_board.glb', function (gltf) {
                 var model = gltf.scene;
                 console.log(model)
                 model.position.set(-200.0, 0.0, -100.0)
                 model.rotation.set(1.55, 0.0, 0.0);
                 model.scale.set(0.95, 0.95, 0.95);
-                scene.add(model);}, 
-                
-                undefined, 
-                
-                function ( error ) {
-                    console.error( error );
-            });
+                scene.add(model);
+            },
+
+                undefined,
+
+                function (error) {
+                    console.error(error);
+                });
 
         }
 
-        
+
 
         function roundedRect(ctx, x, y, width, height, radius) {
 
