@@ -166,8 +166,14 @@
         let discardX = -200;
         let discardY = 0;
         let discardZ = 0;
+        let discardMesh;
+
+        let activeMedic = 0;
 
         const loader = new THREE.TextureLoader();
+
+        const cardShape = new THREE.Shape();
+        roundedRect(cardShape, 0, 0, cardWidth, cardHeight, 10);
 
         init();
         animate();
@@ -200,14 +206,6 @@
             roundedRect(testShape, 0, 0, 135, 220, 10);
             extrudeSettings = { depth: 0, bevelEnabled: false, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
 
-            /*
-                --Spark Test:
-            texture = loader.load("textures/sparkimage.png");
-            texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-            texture.repeat.set(0.0062, 0.004);
-            addShape(testShape, extrudeSettings, 0x008000, texture, -300, 0, 100, 0, 0, 0, 1);
-            */
-
             //Renderer
             renderer = new THREE.WebGLRenderer({ antialias: true });
             renderer.setPixelRatio(window.devicePixelRatio);
@@ -229,7 +227,13 @@
 
             domEvents.addEventListener(mesh, "click", function (event) {
                 if (selected && !melee.includes(selected) && selected["melee"] && selected["ability"] != "Spy") {
-                    handCards.splice(handCards.indexOf(selected), 1);
+                    if (activeMedic) {
+                        activeMedic = 0;
+                        discard.splice(discard.indexOf(selected), 1);
+                        collapseDiscard();
+                    }
+                    else
+                        handCards.splice(handCards.indexOf(selected), 1);
 
                     meleeMesh.material.opacity = rowOpacity;
                     rangedMesh.material.opacity = rowOpacity;
@@ -240,17 +244,6 @@
                     melee.sort(function (a, b) {
                         return -(b["strength"] - a["strength"]);
                     })
-                    placesInRow(melee, meleeCardY);
-
-                    if (!selected["hero"]) {
-                        if (!max.length || selected["strength"] > max[0]["strength"]) {
-                            max.length = 0;
-                            max.push(selected);
-                        }
-                        else if (selected["strength"] == max[0]["strength"]) {
-                            max.push(selected);
-                        }
-                    }
 
                     updateNumbers(melee);
                     selected = 0;
@@ -267,7 +260,13 @@
 
             domEvents.addEventListener(mesh, "click", function (event) {
                 if (selected && !ranged.includes(selected) && selected["ranged"] && selected["ability"] != "Spy") {
-                    handCards.splice(handCards.indexOf(selected), 1);
+                    if (activeMedic) {
+                        activeMedic = 0;
+                        discard.splice(discard.indexOf(selected), 1);
+                        collapseDiscard();
+                    }
+                    else
+                        handCards.splice(handCards.indexOf(selected), 1);
 
                     meleeMesh.material.opacity = rowOpacity;
                     rangedMesh.material.opacity = rowOpacity;
@@ -278,17 +277,6 @@
                     ranged.sort(function (a, b) {
                         return -(b["strength"] - a["strength"]);
                     })
-                    placesInRow(ranged, meleeCardY - cardVertSpacing);
-
-                    if (!selected["hero"]) {
-                        if (!max.length || selected["strength"] > max[0]["strength"]) {
-                            max.length = 0;
-                            max.push(selected);
-                        }
-                        else if (selected["strength"] == max[0]["strength"]) {
-                            max.push(selected);
-                        }
-                    }
 
                     updateNumbers(ranged);
                     selected = 0;
@@ -305,7 +293,14 @@
 
             domEvents.addEventListener(mesh, "click", function (event) {
                 if (selected && !siege.includes(selected) && selected["siege"] && selected["ability"] != "Spy") {
-                    handCards.splice(handCards.indexOf(selected), 1);
+
+                    if (activeMedic) {
+                        activeMedic = 0;
+                        discard.splice(discard.indexOf(selected), 1);
+                        collapseDiscard();
+                    }
+                    else
+                        handCards.splice(handCards.indexOf(selected), 1);
 
                     meleeMesh.material.opacity = rowOpacity;
                     rangedMesh.material.opacity = rowOpacity;
@@ -316,8 +311,8 @@
                     siege.sort(function (a, b) {
                         return -(b["strength"] - a["strength"]);
                     })
-                    placesInRow(siege, meleeCardY - 2 * cardVertSpacing);
 
+                    /*
                     if (!selected["hero"]) {
                         if (!max.length || selected["strength"] > max[0]["strength"]) {
                             max.length = 0;
@@ -326,7 +321,7 @@
                         else if (selected["strength"] == max[0]["strength"]) {
                             max.push(selected);
                         }
-                    }
+                    }*/
 
                     updateNumbers(siege);
                     selected = 0;
@@ -335,49 +330,31 @@
                 }
             });
 
-            function placesInRow(cards, cardY) {
-                let positions = [];
-                let placedCardWidth = cardWidth / 2;
+            //DISCARD PILE
+            addShape(cardShape, extrudeSettings, 0x008000, null, 0, 0, 80, 0, 0, 0, .5);
+            mesh.material.color = { "r": 232 / 255, "g": 218 / 255, "b": 125 / 255 };
+            mesh.material.opacity = rowOpacity;
+            mesh.position.x = discardX;
+            mesh.position.y = discardY;
 
-                let placedCardX = 50;
-                if (cards.length % 2 == 0)
-                    placedCardX += placedCardWidth / 2;
+            discardMesh = mesh;
 
-                for (let i = 0; i < cards.length; i++) {
-                    if (cards.length <= maxCards) {
-                        if (i % 2 != 0)
-                            positions[i] = placedCardX - (Math.floor(i / 2) + 1) * placedCardWidth;
-                        else
-                            positions[i] = placedCardX + (i / 2) * placedCardWidth;
-                    }
-                    else {
-                        if (i % 2 != 0)
-                            positions[i] = placedCardX - (Math.floor(i / 2) + 1) * (placedCardWidth - (cards.length - maxCards) / maxCards * placedCardWidth);
-                        else
-                            positions[i] = placedCardX + (i / 2) * (placedCardWidth - (cards.length - maxCards) / maxCards * placedCardWidth);
-                    }
+            domEvents.addEventListener(mesh, "click", function (event) {
+                if (activeMedic) {
+                    discardMesh.material.opacity = rowOpacity;
+                    expandDiscard();
+                    activeMedic = 2;
                 }
-                console.log(positions);
-                positions.sort(function (a, b) {
-                    return (a - b);
-                });
-                console.log(positions);
-
-                for (let i = 0; i < cards.length; i++) {
-                    cards[i]["mesh"].position.x = positions[i];
-                    cards[i]["mesh"].position.y = cardY;
-                    cards[i]["mesh"].position.z = i * 2 - 80;
-                }
-            }
+            });
 
             ///////
             //Card creation
+            ///////////////////////////////////////////////
+            //Mess with the values in line 356 'd["strength"] > 6' to see different collection of cards
             cardData.forEach(testDisplay);
             function testDisplay(d) {
                 if (!d["leader"] && d["strength"] > 6) {
                     //&& x / 1000 < 1) {
-                    const cardShape = new THREE.Shape();
-                    roundedRect(cardShape, 0, 0, cardWidth, cardHeight, 10);
                     extrudeSettings = { depth: 4, bevelEnabled: false, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
 
                     texture = loader.load(d["smallImage"]);
@@ -396,20 +373,53 @@
 
                     domEvents.addEventListener(meshes[currentMesh], "mouseover", function (event) {
                         //ADD EVENT
-                        if (!selected && !melee.includes(d) && !ranged.includes(d) && !siege.includes(d)) {
+                        if (discard.includes(d)) {
+                            if (!selected && activeMedic == 2) {
+                                d["mesh"].position.z += 10;
+                                d["mesh"].position.y += 20;
+                            }
+                        }
+                        else if (!selected && activeMedic == 0 && !melee.includes(d) && !ranged.includes(d) && !siege.includes(d)) {
                             d["mesh"].position.z += 10;
                             d["mesh"].position.y += 20;
                         }
                     }, false);
                     domEvents.addEventListener(meshes[currentMesh], "mouseout", function (event) {
                         //ADD EVENT
-                        if (!selected && !melee.includes(d) && !ranged.includes(d) && !siege.includes(d)) {
+                        if (discard.includes(d)) {
+                            if (!selected && activeMedic == 2) {
+                                if (d["mesh"].position.y != discardY) {
+                                    d["mesh"].position.z -= 10;
+                                    d["mesh"].position.y -= 20;
+                                }
+                            }
+                        }
+                        else if (!selected && activeMedic == 0 && !melee.includes(d) && !ranged.includes(d) && !siege.includes(d)) {
                             d["mesh"].position.z -= 10;
                             d["mesh"].position.y -= 20;
                         }
                     }, false);
                     domEvents.addEventListener(meshes[currentMesh], "click", function (event) {
-                        if (!selected && !melee.includes(d) && !ranged.includes(d) && !siege.includes(d) && !discard.includes(d)) {
+                        if (discard.includes(d)) {
+                            if (activeMedic == 2) {
+                                if (!selected) {
+                                    selected = d;
+                                    if (d["melee"])
+                                        meleeMesh.material.opacity = 0.3;
+                                    if (d["ranged"])
+                                        rangedMesh.material.opacity = 0.3;
+                                    if (d["siege"])
+                                        siegeMesh.material.opacity = 0.3;
+                                }
+                                else if (selected == d) {
+                                    selected = 0;
+                                    meleeMesh.material.opacity = rowOpacity;
+                                    rangedMesh.material.opacity = rowOpacity;
+                                    siegeMesh.material.opacity = rowOpacity;
+                                }
+                            }
+                        }
+                        else if (!selected && activeMedic == 0 && !melee.includes(d) && !ranged.includes(d) && !siege.includes(d)) {
                             selected = d;
                             if (d["melee"])
                                 meleeMesh.material.opacity = 0.3;
@@ -435,25 +445,22 @@
                     return -(b["strength"] - a["strength"]);
                 })
                 let positions = [];
-                console.log(handCards.length);
                 if (handCards.length % 2 == 0)
                     handCardX = cardWidth / 2;
                 for (let i = 0; i < handCards.length; i++) {
                     if (i % 2 != 0)
-                        positions[i] = handCardX - (Math.floor(i / 2) + 1) * cardWidth;
+                        positions[i] = handCardX - (Math.floor(i / 2) + 1) * cardWidth * 2 / 3;
                     else
-                        positions[i] = handCardX + (i / 2) * cardWidth;
+                        positions[i] = handCardX + (i / 2) * cardWidth * 2 / 3;
                 }
-                console.log(positions);
                 positions.sort(function (a, b) {
                     return (a - b);
                 });
-                console.log(positions);
                 let handZ = -140;
                 for (let i = 0; i < handCards.length; i++) {
                     handCards[i]["mesh"].position.x = positions[i];
                     handCards[i]["mesh"].position.z = handZ;
-                    handZ += 2;
+                    handZ += 1;
                 }
             }
 
@@ -461,7 +468,6 @@
             const model_loader = new GLTFLoader();
             model_loader.load('./models/updated_gwent_board.glb', function (gltf) {
                 var model = gltf.scene;
-                console.log(model)
                 model.position.set(-200.0, 0.0, -180.0)
                 model.rotation.set(1.55, 0.0, 0.0);
                 model.scale.set(0.95, 0.95, 0.95);
@@ -480,7 +486,7 @@
             let positions = [];
             let placedCardWidth = cardWidth / 2;
 
-            let placedCardX = 50;
+            let placedCardX = 95;
             if (cards.length % 2 == 0)
                 placedCardX += placedCardWidth / 2;
 
@@ -506,6 +512,10 @@
                 cards[i]["mesh"].position.x = positions[i];
                 cards[i]["mesh"].position.y = cardY;
                 cards[i]["mesh"].position.z = i * 2 - 80;
+                if (cards[i]["number"]) {
+                    cards[i]["number"].position.x = positions[i] + numberOffsetX;
+                    cards[i]["number"].position.z = cards[i]["mesh"].position.z + 2;
+                }
             }
         }
 
@@ -520,16 +530,40 @@
 
             extrudeSettings = { depth: 1, bevelEnabled: false, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
             let url = "https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/numbers/" + num + ".jpg";
-
             texture = loader.load(url);
             texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
             texture.repeat.set(0.11, 0.11);
             texture.offset.set(.5, 0.5);
-            addShape(circleShape, extrudeSettings, 0x008000, texture, x + numberOffsetX,
-                y + numberOffsetY, z + numberOffsetZ, 0, 0, 0, .9);
+            addShape(circleShape, extrudeSettings, 0x008000, texture, x,
+                y, z, 0, 0, 0, .9);
         }
 
         function updateNumbers(cards) {
+            if (selected["ability"] == "Scorch") {
+                findNewMax();
+
+                for (let i = 0; i < max.length; i++) {
+                    if (melee.includes(max[i]))
+                        melee.splice(melee.indexOf(max[i]), 1);
+
+                    if (ranged.includes(max[i]))
+                        ranged.splice(ranged.indexOf(max[i]), 1);
+
+                    if (siege.includes(max[i]))
+                        siege.splice(siege.indexOf(max[i]), 1);
+
+                    if (max[i]["bonded"] > 0) {
+                        max[i]["strength"] /= max[i]["bonded"];
+                        max[i]["bonded"] = 0;
+                    }
+                    discardCard(max[i]);
+                }
+            }
+
+            placesInRow(melee, meleeCardY);
+            placesInRow(ranged, meleeCardY - cardVertSpacing);
+            placesInRow(siege, meleeCardY - 2 * cardVertSpacing);
+
             if (selected["ability"] == "Bond") {
                 let count = 0;
                 let bonded = [];
@@ -541,32 +575,66 @@
                 }
                 if (count > 1) {
                     for (let i = 0; i < bonded.length; i++) {
-                        numberCircle(selected["strength"] * count, bonded[i]["mesh"].position.x,
-                            bonded[i]["mesh"].position.y, bonded[i]["mesh"].position.z);
+                        if (cards[cards.indexOf(bonded[i])]["number"])
+                            group.remove(cards[cards.indexOf(bonded[i])]["number"]);
+                        numberCircle(selected["strength"] * count, bonded[i]["mesh"].position.x + numberOffsetX,
+                            bonded[i]["mesh"].position.y + numberOffsetY, bonded[i]["mesh"].position.z + numberOffsetZ);
                         cards[cards.indexOf(bonded[i])]["number"] = mesh;
+                        if (!(bonded[i] === selected))
+                            cards[cards.indexOf(bonded[i])]["strength"] = selected["strength"] * count;
+                        cards[cards.indexOf(bonded[i])]["bonded"] = count;
                     }
-                }
-            }
-            if (selected["ability"] == "Scorch") {
-                for (let i = 0; i < max.length; i++) {
-                    if (max[i]) {
-                        if (melee.includes(max[i])) {
-                            melee.splice(melee.indexOf(max[i], 1));
-                            placesInRow(melee, meleeCardY);
-                        }
-                        if (ranged.includes(max[i])) {
-                            ranged.splice(ranged.indexOf(max[i], 1));
-                            placesInRow(ranged, meleeCardY + cardVertSpacing);
-                        }
-                        if (siege.includes(max[i])) {
-                            siege.splice(siege.indexOf(max[i], 1));
-                            placesInRow(siege, meleeCardY + 2 * cardVertSpacing);
-                        }
-                    }
-                    discardCard(max[i]);
+                    selected["strength"] *= count;
                 }
             }
 
+            if (selected["ability"] == "Medic") {
+                let bool = 0;
+                for (let i = 0; i < discard.length; i++) {
+                    if (!discard[i]["hero"]) {
+                        bool = 1;
+                        break;
+                    }
+                }
+                if (bool) {
+                    activeMedic = 1;
+                    discardMesh.material.opacity = 0.3;
+                }
+            }
+        }
+
+        function findNewMax() {
+            max.length = 0;
+            for (let i = 0; i < melee.length; i++) {
+                if (!melee[i]["hero"]) {
+                    if (max.length == 0 || melee[i]["strength"] > max[0]["strength"]) {
+                        max.length = 0;
+                        max.push(melee[i]);
+                    }
+                    else if (melee[i]["strength"] == max[0]["strength"])
+                        max.push(melee[i]);
+                }
+            }
+            for (let i = 0; i < ranged.length; i++) {
+                if (!ranged[i]["hero"]) {
+                    if (max.length == 0 || ranged[i]["strength"] > max[0]["strength"]) {
+                        max.length = 0;
+                        max.push(ranged[i]);
+                    }
+                    else if (ranged[i]["strength"] == max[0]["strength"])
+                        max.push(ranged[i]);
+                }
+            }
+            for (let i = 0; i < siege.length; i++) {
+                if (!siege[i]["hero"]) {
+                    if (max.length == 0 || siege[i]["strength"] > max[0]["strength"]) {
+                        max.length = 0;
+                        max.push(siege[i]);
+                    }
+                    else if (siege[i]["strength"] == max[0]["strength"])
+                        max.push(siege[i]);
+                }
+            }
         }
 
         function discardCard(card) {
@@ -578,6 +646,24 @@
             discard.push(card);
 
             discardZ += 2;
+        }
+
+        function expandDiscard() {
+            discardZ = 0;
+            for (let i = 0; i < discard.length; i++) {
+                discard[i]["mesh"].position.x = discardX - i * 14;
+                discard[i]["mesh"].position.y = discardY;
+                discard[i]["mesh"].position.z = discardZ + i * 2;
+            }
+        }
+
+        function collapseDiscard() {
+            discardZ = 0;
+            for (let i = 0; i < discard.length; i++) {
+                discard[i]["mesh"].position.x = discardX;
+                discard[i]["mesh"].position.y = discardY;
+                discard[i]["mesh"].position.z = discardZ + i * 2;
+            }
         }
 
         function roundedRect(ctx, x, y, width, height, radius) {
@@ -596,7 +682,6 @@
 
         function addShape(shape, extrudeSettings, color, texture, x, y, z, rx, ry, rz, s) {
 
-            // console.log(texture);
             const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
 
             mesh = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial({ map: texture, transparent: true }));
@@ -790,7 +875,6 @@
             }
 
             THREEx.DomEvents.prototype.bind = function (object3d, eventName, callback, useCapture) {
-                console.assert(THREEx.DomEvents.eventNames.indexOf(eventName) !== -1, "not available events:" + eventName);
 
                 if (!this._objectCtxIsInit(object3d)) this._objectCtxInit(object3d);
                 var objectCtx = this._objectCtxGet(object3d);
@@ -810,7 +894,6 @@
             THREEx.DomEvents.prototype.addEventListener = THREEx.DomEvents.prototype.bind
 
             THREEx.DomEvents.prototype.unbind = function (object3d, eventName, callback, useCapture) {
-                console.assert(THREEx.DomEvents.eventNames.indexOf(eventName) !== -1, "not available events:" + eventName);
 
                 if (!this._objectCtxIsInit(object3d)) this._objectCtxInit(object3d);
 
@@ -827,7 +910,7 @@
                 }
                 // from this object from this._boundObjs
                 var index = this._boundObjs[eventName].indexOf(object3d);
-                console.assert(index !== -1);
+
                 this._boundObjs[eventName].splice(index, 1);
             }
             THREEx.DomEvents.prototype.removeEventListener = THREEx.DomEvents.prototype.unbind
@@ -845,7 +928,6 @@
             // # handle mousemove kind of events
 
             THREEx.DomEvents.prototype._onMove = function (eventName, mouseX, mouseY, origDomEvent) {
-                //console.log('eventName', eventName, 'boundObjs', this._boundObjs[eventName])
                 // get objects bound to this event
                 var boundObjs = this._boundObjs[eventName];
                 if (boundObjs === undefined || boundObjs.length === 0) return;
@@ -897,7 +979,6 @@
             // # handle click kind of events
 
             THREEx.DomEvents.prototype._onEvent = function (eventName, mouseX, mouseY, origDomEvent) {
-                //console.log('eventName', eventName, 'boundObjs', this._boundObjs[eventName])
                 // get objects bound to this event
                 var boundObjs = this._boundObjs[eventName];
                 if (boundObjs === undefined || boundObjs.length === 0) return;
@@ -931,9 +1012,6 @@
             THREEx.DomEvents.prototype._notify = function (eventName, object3d, origDomEvent, intersect) {
                 var objectCtx = this._objectCtxGet(object3d);
                 var handlers = objectCtx ? objectCtx[eventName + 'Handlers'] : null;
-
-                // parameter check
-                console.assert(arguments.length === 4)
 
                 // do bubbling
                 if (!objectCtx || !handlers || handlers.length === 0) {
