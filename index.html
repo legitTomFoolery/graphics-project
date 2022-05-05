@@ -114,7 +114,7 @@
         let rowSpacing = 77;
         let rowX = 230;
         let rowY = 210;
-        let maxCards = 6;
+        let maxCards = 8;
 
         let meleeMesh;
         let rangedMesh;
@@ -142,6 +142,8 @@
         let rangedCards = [];
         let siegeCards = [];
 
+        let max = [];
+
         let infoView = 0;
         let infoWidth = 115;
         let infoHeight = 200;
@@ -154,6 +156,16 @@
         let fadeY = -540;
         let fadeOpacity = 0.5;
         let fadeMesh;
+
+        let numberOverlays = [];
+        let numberOffsetX = 6;
+        let numberOffsetY = 55;
+        let numberOffsetZ = 80;
+
+        let discard = [];
+        let discardX = -200;
+        let discardY = 0;
+        let discardZ = 0;
 
         const loader = new THREE.TextureLoader();
 
@@ -173,8 +185,10 @@
             camera.position.set(0, 150, 500);
             scene.add(camera);
 
-            const light = new THREE.PointLight(0xffffff, 1);
+            const light = new THREE.AmbientLight(0x6f6f6f);
+            const pointLight = new THREE.PointLight(0xffffff, .6);
             camera.add(light);
+            camera.add(pointLight);
 
             group = new THREE.Group();
             group.position.y = 50;
@@ -209,24 +223,12 @@
             extrudeSettings = { depth: 4, bevelEnabled: false, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
             addShape(rowShape, extrudeSettings, 0x008000, null, -300, 0, 10, 0, 0, 0, 1);
 
-            // Board Texture
-            //texture = loader.load("textures/wood.jpg");
-            //texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-            //texture.repeat.set(0.0012, 0.005);
-
-
             mesh.material.color = { "r": 232 / 255, "g": 218 / 255, "b": 125 / 255 };
             mesh.material.opacity = rowOpacity;
             meleeMesh = mesh;
 
-            //domEvents.addEventListener(mesh, "mouseover", function (event) {
-            //    mesh.material.opacity = 0.25;
-            //});
-
-
-
             domEvents.addEventListener(mesh, "click", function (event) {
-                if (selected && !melee.includes(selected) && selected["melee"]) {
+                if (selected && !melee.includes(selected) && selected["melee"] && selected["ability"] != "Spy") {
                     handCards.splice(handCards.indexOf(selected), 1);
 
                     meleeMesh.material.opacity = rowOpacity;
@@ -240,6 +242,17 @@
                     })
                     placesInRow(melee, meleeCardY);
 
+                    if (!selected["hero"]) {
+                        if (!max.length || selected["strength"] > max[0]["strength"]) {
+                            max.length = 0;
+                            max.push(selected);
+                        }
+                        else if (selected["strength"] == max[0]["strength"]) {
+                            max.push(selected);
+                        }
+                    }
+
+                    updateNumbers(melee);
                     selected = 0;
 
                     placeHand();
@@ -253,7 +266,7 @@
             rangedMesh = mesh;
 
             domEvents.addEventListener(mesh, "click", function (event) {
-                if (selected && !ranged.includes(selected) && selected["ranged"]) {
+                if (selected && !ranged.includes(selected) && selected["ranged"] && selected["ability"] != "Spy") {
                     handCards.splice(handCards.indexOf(selected), 1);
 
                     meleeMesh.material.opacity = rowOpacity;
@@ -267,6 +280,17 @@
                     })
                     placesInRow(ranged, meleeCardY - cardVertSpacing);
 
+                    if (!selected["hero"]) {
+                        if (!max.length || selected["strength"] > max[0]["strength"]) {
+                            max.length = 0;
+                            max.push(selected);
+                        }
+                        else if (selected["strength"] == max[0]["strength"]) {
+                            max.push(selected);
+                        }
+                    }
+
+                    updateNumbers(ranged);
                     selected = 0;
 
                     placeHand();
@@ -280,7 +304,7 @@
             siegeMesh = mesh;
 
             domEvents.addEventListener(mesh, "click", function (event) {
-                if (selected && !siege.includes(selected) && selected["siege"]) {
+                if (selected && !siege.includes(selected) && selected["siege"] && selected["ability"] != "Spy") {
                     handCards.splice(handCards.indexOf(selected), 1);
 
                     meleeMesh.material.opacity = rowOpacity;
@@ -294,6 +318,17 @@
                     })
                     placesInRow(siege, meleeCardY - 2 * cardVertSpacing);
 
+                    if (!selected["hero"]) {
+                        if (!max.length || selected["strength"] > max[0]["strength"]) {
+                            max.length = 0;
+                            max.push(selected);
+                        }
+                        else if (selected["strength"] == max[0]["strength"]) {
+                            max.push(selected);
+                        }
+                    }
+
+                    updateNumbers(siege);
                     selected = 0;
 
                     placeHand();
@@ -339,8 +374,8 @@
             //Card creation
             cardData.forEach(testDisplay);
             function testDisplay(d) {
-                if (!d["leader"] && d["strength"] > 6
-                    && x / 1000 < 1) {
+                if (!d["leader"] && d["strength"] > 6) {
+                    //&& x / 1000 < 1) {
                     const cardShape = new THREE.Shape();
                     roundedRect(cardShape, 0, 0, cardWidth, cardHeight, 10);
                     extrudeSettings = { depth: 4, bevelEnabled: false, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
@@ -374,7 +409,7 @@
                         }
                     }, false);
                     domEvents.addEventListener(meshes[currentMesh], "click", function (event) {
-                        if (!selected && !melee.includes(d) && !ranged.includes(d) && !siege.includes(d)) {
+                        if (!selected && !melee.includes(d) && !ranged.includes(d) && !siege.includes(d) && !discard.includes(d)) {
                             selected = d;
                             if (d["melee"])
                                 meleeMesh.material.opacity = 0.3;
@@ -391,16 +426,6 @@
                         }
                     });
                     handCards[handCards.length] = d;
-
-
-                    // it's necessary to apply these settings in order to correctly display the texture on a shape geometry
-
-                    x += cardWidth;
-                    if (x % 1000 == 0 && x != 0) {
-                        y -= 100;
-                        z = 0
-                    }
-                    z += 2;
                 }
             }
             placeHand();
@@ -431,38 +456,6 @@
                     handZ += 2;
                 }
             }
-            function placesInRow(cards, cardY) {
-                let positions = [];
-                let placedCardWidth = cardWidth / 2;
-
-                let placedCardX = 50;
-                if (cards.length % 2 == 0)
-                    placedCardX += placedCardWidth / 2;
-
-                for (let i = 0; i < cards.length; i++) {
-                    if (cards.length <= maxCards) {
-                        if (i % 2 != 0)
-                            positions[i] = placedCardX - (Math.floor(i / 2) + 1) * placedCardWidth;
-                        else
-                            positions[i] = placedCardX + (i / 2) * placedCardWidth;
-                    }
-                    else {
-                        if (i % 2 != 0)
-                            positions[i] = placedCardX - (Math.floor(i / 2) + 1) * (placedCardWidth - (cards.length - maxCards) / maxCards * placedCardWidth);
-                        else
-                            positions[i] = placedCardX + (i / 2) * (placedCardWidth - (cards.length - maxCards) / maxCards * placedCardWidth);
-                    }
-                }
-                positions.sort(function (a, b) {
-                    return (a - b);
-                });
-
-                for (let i = 0; i < cards.length; i++) {
-                    cards[i]["mesh"].position.x = positions[i];
-                    cards[i]["mesh"].position.y = cardY;
-                    cards[i]["mesh"].position.z = i * 2 - 80;
-                }
-            }
 
 
             const model_loader = new GLTFLoader();
@@ -483,7 +476,109 @@
 
         }
 
+        function placesInRow(cards, cardY) {
+            let positions = [];
+            let placedCardWidth = cardWidth / 2;
 
+            let placedCardX = 50;
+            if (cards.length % 2 == 0)
+                placedCardX += placedCardWidth / 2;
+
+            for (let i = 0; i < cards.length; i++) {
+                if (cards.length <= maxCards) {
+                    if (i % 2 != 0)
+                        positions[i] = placedCardX - (Math.floor(i / 2) + 1) * placedCardWidth;
+                    else
+                        positions[i] = placedCardX + (i / 2) * placedCardWidth;
+                }
+                else {
+                    if (i % 2 != 0)
+                        positions[i] = placedCardX - (Math.floor(i / 2) + 1) * (placedCardWidth - (cards.length - maxCards) / maxCards * placedCardWidth);
+                    else
+                        positions[i] = placedCardX + (i / 2) * (placedCardWidth - (cards.length - maxCards) / maxCards * placedCardWidth);
+                }
+            }
+            positions.sort(function (a, b) {
+                return (a - b);
+            });
+
+            for (let i = 0; i < cards.length; i++) {
+                cards[i]["mesh"].position.x = positions[i];
+                cards[i]["mesh"].position.y = cardY;
+                cards[i]["mesh"].position.z = i * 2 - 80;
+            }
+        }
+
+        function numberCircle(num, x, y, z) {
+            const circleRadius = 5;
+            const circleShape = new THREE.Shape()
+                .moveTo(0, circleRadius)
+                .quadraticCurveTo(circleRadius, circleRadius, circleRadius, 0)
+                .quadraticCurveTo(circleRadius, - circleRadius, 0, - circleRadius)
+                .quadraticCurveTo(- circleRadius, - circleRadius, - circleRadius, 0)
+                .quadraticCurveTo(- circleRadius, circleRadius, 0, circleRadius);
+
+            extrudeSettings = { depth: 1, bevelEnabled: false, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
+            let url = "https://raw.githubusercontent.com/legitTomFoolery/graphics-project/main/numbers/" + num + ".jpg";
+
+            texture = loader.load(url);
+            texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+            texture.repeat.set(0.11, 0.11);
+            texture.offset.set(.5, 0.5);
+            addShape(circleShape, extrudeSettings, 0x008000, texture, x + numberOffsetX,
+                y + numberOffsetY, z + numberOffsetZ, 0, 0, 0, .9);
+        }
+
+        function updateNumbers(cards) {
+            if (selected["ability"] == "Bond") {
+                let count = 0;
+                let bonded = [];
+                for (let i = 0; i < cards.length; i++) {
+                    if (cards[i]["name"] == selected["name"]) {
+                        count++;
+                        bonded.push(cards[i]);
+                    }
+                }
+                if (count > 1) {
+                    for (let i = 0; i < bonded.length; i++) {
+                        numberCircle(selected["strength"] * count, bonded[i]["mesh"].position.x,
+                            bonded[i]["mesh"].position.y, bonded[i]["mesh"].position.z);
+                        cards[cards.indexOf(bonded[i])]["number"] = mesh;
+                    }
+                }
+            }
+            if (selected["ability"] == "Scorch") {
+                for (let i = 0; i < max.length; i++) {
+                    if (max[i]) {
+                        if (melee.includes(max[i])) {
+                            melee.splice(melee.indexOf(max[i], 1));
+                            placesInRow(melee, meleeCardY);
+                        }
+                        if (ranged.includes(max[i])) {
+                            ranged.splice(ranged.indexOf(max[i], 1));
+                            placesInRow(ranged, meleeCardY + cardVertSpacing);
+                        }
+                        if (siege.includes(max[i])) {
+                            siege.splice(siege.indexOf(max[i], 1));
+                            placesInRow(siege, meleeCardY + 2 * cardVertSpacing);
+                        }
+                    }
+                    discardCard(max[i]);
+                }
+            }
+
+        }
+
+        function discardCard(card) {
+            card["mesh"].position.x = discardX;
+            card["mesh"].position.y = discardY;
+            card["mesh"].position.z = discardZ;
+            group.remove(card["number"]);
+
+            discard.push(card);
+
+            discardZ += 2;
+        }
 
         function roundedRect(ctx, x, y, width, height, radius) {
 
