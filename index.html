@@ -109,11 +109,11 @@
         const rowShape = new THREE.Shape();
 
         let rowOpacity = 0.0;
-        let rowWidth = 280;
-        let rowHeight = 80;
-        let rowSpacing = 85;
+        let rowWidth = 380;
+        let rowHeight = 72;
+        let rowSpacing = 77;
         let rowX = 230;
-        let rowY = 240;
+        let rowY = 210;
         let maxCards = 6;
 
         let meleeMesh;
@@ -129,8 +129,8 @@
         let x = 0;
         let y = -160;
         let z = -60;
-        let meleeCardY = 255;
-        let cardVertSpacing = 87;
+        let meleeCardY = 217;
+        let cardVertSpacing = 76;
 
         let meshes = [];
         let topMeshes = [];
@@ -466,7 +466,7 @@
 
 
             const model_loader = new GLTFLoader();
-            model_loader.load('./models/new_gwent_board.glb', function (gltf) {
+            model_loader.load('./models/updated_gwent_board.glb', function (gltf) {
                 var model = gltf.scene;
                 console.log(model)
                 model.position.set(-200.0, 0.0, -180.0)
